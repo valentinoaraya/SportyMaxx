@@ -1,0 +1,38 @@
+.presentacion{
+    width: 100vw;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("../../assets/images/Banner.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.nombre{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+}
+
+hr{
+    height: 2px;
+    margin-bottom: 0.5rem;
+    background-color: white;
+    width: 100%;
+}
+
+.title{
+    font-size: 5rem;
+    font-weight: 900;
+}
+
+.subtitle{
+    font-size: 3rem;
+    font-weight: normal;
+}
