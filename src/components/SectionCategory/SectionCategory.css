@@ -1,0 +1,44 @@
+.sectionCategory{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 1rem 0 5rem 0 ;
+}
+
+.divCategory{
+    display: flex;
+    align-items: end;
+    background-color: blueviolet;
+    width: 38rem;
+    height: 50rem;
+    padding: 3rem;
+    margin: 0 0.5rem;
+}
+
+.divCategory h3{
+    color: white;
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+#vcp{
+    background-image: url("../../assets/images/fondoSectionVCP.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#zapas{
+    background-image: url("../../assets/images/fondoSectionZapa.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#buzos{
+    background-image: url("../../assets/images/fondoSectionBuzo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

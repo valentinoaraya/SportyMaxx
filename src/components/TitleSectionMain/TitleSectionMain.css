@@ -1,0 +1,18 @@
+.sectionTitleSection{
+    margin-top: 5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.divTitleSection{
+    width: 100%;
+    max-width: 1300px;
+}
+
+.divTitleSection h2{
+    font-weight: bolder;
+}

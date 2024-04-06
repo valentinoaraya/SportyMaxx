@@ -5,9 +5,9 @@ const Banner = () => {
     return (
         <div className="presentacion">
             <div className="nombre">
-                <h1 className="title">ESTILO SIN GÉNERO</h1>
-                <hr />
-                <h2 className="subtitle">SPORTY MAXX</h2>
+                <h1 className="titleBanner">ESTILO SIN GÉNERO</h1>
+                <hr className='bar' />
+                <h2 className="subtitleBanner">SPORTY MAXX</h2>
             </div>
         </div>
     );

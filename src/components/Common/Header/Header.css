@@ -2,13 +2,23 @@ header{
     background-color: white;
     display: flex;
     justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: box-shadow 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.headerShadow{
+    box-shadow: 0 1px 20px black;
 }
 
 nav{
     display: flex;
-    width: 1200px;
-    height: 6vh;
-    padding: 0.5rem;
+    width: 1300px;
+    height: 7vh;
+    padding: 0.5rem 1rem 0.5rem 1rem;
     justify-content: space-between;
     align-items: center;
 }

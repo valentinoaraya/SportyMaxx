@@ -1,0 +1,13 @@
+const arrayProducts = [
+    {"id":1,"imagen":"https://res.cloudinary.com/dyzoubfmd/image/upload/v1712352178/SportyMaxx/products/mhsshxuylhwy0kafsqui.jpg","nombre":"Billetera","precio":5624,"cat":"Billeteras", "discount":15, "initialPrice":6467.6,"stock": 22},
+    {"id":2,"imagen":"https://res.cloudinary.com/dyzoubfmd/image/upload/v1712352177/SportyMaxx/products/fouitgp96xvtpvqmu3ps.jpg","nombre":"Pantalón VCP","precio":4724,"cat":"Pantalones", "discount": 20, "initialPrice":5668.8,"cion": "Whey X Pro Complex Protein aporta una combinación explosiva de proteínas, creatina, taurina, glutamina, aminoácidos, vitaminas, minerales y antioxidantes, en una nueva fórmula mejorada. Aporta más sabor y una máxima disolución para lograr mejores resultados y la podés consumir antes o después del entrenamiento. Es la proteína de suero más avanzada del mercado.", "stock": 15},
+    {"id":3,"imagen":"https://res.cloudinary.com/dyzoubfmd/image/upload/v1712352177/SportyMaxx/products/okf48ts5coldmcr8is7m.jpg","nombre":"Cinto VCP negro","precio":4049,"cat":"Proteina", "stock": 28},
+    //{"id":4,"imagen":"https://res.cloudinary.com/dyzoubfmd/image/upload/v1712352177/SportyMaxx/products/wedhovberhsssxm0wuwu.jpg","nombre":"Pantalón VCP gris","precio":2940,"cat":"Proteina",  "descripcion": "Proteína Vegetal de máxima calidad, elaborada a base de proteína de arvejas. Ideal para quienes eligen una alimentación vegana o vegetariana o para complementar cualquier dieta con deficiencia proteica.", "stock": 15},
+    //{"id":5,"imagen":"https://res.cloudinary.com/dyzoubfmd/image/upload/v1712352176/SportyMaxx/products/jydljjbasubbina5qorg.jpg","nombre":"Gorro VCP negro","precio":4274,"cat":"Proteina","stock": 9},
+    //{"id":6,"imagen":"https://res.cloudinary.com/dyzoubfmd/image/upload/v1712352176/SportyMaxx/products/ioe8j3ssvafhuclzcfif.jpg","nombre":"Buzo","precio":3915,"cat":"Aimnoacido", "discount": 25, "initialPrice":4893.75,"stock": 20},
+    //{"id":7,"imagen":"https://res.cloudinary.com/dyzoubfmd/image/upload/v1712352176/SportyMaxx/products/txte2aqq1xh8i9hxkbyh.jpg","nombre":"Buzo VCP azul","precio":1469,"cat":"Aimnoacido", "stock": 19},
+    {"id":8,"imagen":"https://res.cloudinary.com/dyzoubfmd/image/upload/v1712352176/SportyMaxx/products/fkph0nxoj1upvvvu27m1.jpg","nombre":"Buzo VCP rosado","precio":2376,"cat":"Aimnoacido", "stock": 11},
+    //{"id":9,"imagen":"https://res.cloudinary.com/dyzoubfmd/image/upload/v1712352176/SportyMaxx/products/fg1khhuqpb6z4x68xf4r.jpg","nombre":"Buzo VCP","precio":2520,"cat":"Aimnoacido", "stock": 11},
+]
+
+export default arrayProducts
