@@ -3,6 +3,7 @@ import "./Header.css"
 import logo from "../../../assets/images/logo.png"
 import CartWidget from '../../CartWidget/CartWidget.jsx';
 import SearchBar from '../../SearchBar/SearchBar.jsx';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
@@ -21,10 +22,12 @@ const Header = () => {
 
 
     return (
-        <header className={shadow ? 'headerShadow' : ""}>
+        <header className={shadow ? 'headerShadow' : "border"}>
             <nav>
                 <div className='logoCategoriesContainer'>
-                    <img className='logoHeader' src={logo} alt="Logo" />
+                    <Link to={"/"}>
+                        <img className='logoHeader' src={logo} alt="Logo" />
+                    </Link>
                     <div className='categories'>
                         <p>Remeras</p>
                         <p>Pantalones</p>

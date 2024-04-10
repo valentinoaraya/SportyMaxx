@@ -6,14 +6,18 @@
     margin: 1rem 0 5rem 0 ;
 }
 
+.link-divCategory{
+    width: 33%;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
 .divCategory{
     display: flex;
     align-items: end;
-    background-color: blueviolet;
-    width: 38rem;
+    width: 100%;
     height: 50rem;
     padding: 3rem;
-    margin: 0 0.5rem;
 }
 
 .divCategory h3{
@@ -24,21 +28,36 @@
 
 #vcp{
     background-image: url("../../assets/images/fondoSectionVCP.png");
-    background-size: cover;
+    background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
+    transition: background-size 0.5s ease;
 }
 
 #zapas{
     background-image: url("../../assets/images/fondoSectionZapa.png");
-    background-size: cover;
+    background-size: auto 100%;
     background-position: center;
     background-repeat: no-repeat;
+    transition: background-size 0.5s ease;
 }
 
 #buzos{
     background-image: url("../../assets/images/fondoSectionBuzo.png");
-    background-size: cover;
+    background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
+    transition: background-size 0.5s ease;
+}
+
+#vcp:hover{
+    background-size: 110%;
+}
+
+#zapas:hover{
+    background-size: auto 110%;
+}
+
+#buzos:hover{
+    background-size: 110%;
 }

@@ -1,12 +1,39 @@
-.divProduct{
+.link{
     margin: 0.5rem;
     margin-bottom: 1.2rem;
+    text-decoration: none;   
+}
+
+.divProduct{
+    margin: 0rem;
 }
 
 .imgProduct{
     margin-bottom: 0.8rem;
+    transition: opacity 0.5s ease;
+}
+
+.defaultImage{
+    position: absolute;
+    opacity: 1;
 }
 
 .card-title{
     font-weight: bolder;
+}
+
+.hoverImage{
+    opacity: 0;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card:hover .hoverImage{
+    opacity: 1;
+}
+
+.card:hover .defaultImage{
+    opacity: 0;
 }

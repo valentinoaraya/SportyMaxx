@@ -7,13 +7,14 @@ const ProductList = () => {
     return (
         <div className='divListProducts'>
             {
-                arrayProducts.map(({id, nombre, imagen, precio})=>{
+                arrayProducts.map(({id, nombre, imagen, imagenSecundaria, precio})=>{
                     return <Product
                         key={id}
                         id={id}
                         nombre={nombre}
                         imagen={imagen}
                         precio={precio}
+                        imagenSecundaria={imagenSecundaria}
                     />
                 })
             }

@@ -2,10 +2,10 @@ header{
     background-color: white;
     display: flex;
     justify-content: center;
+    width: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
     transition: box-shadow 0.3s ease-in-out;
     z-index: 1000;
 }
