@@ -1,6 +1,8 @@
 header{
     background-color: white;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     width: 100%;
     position: fixed;
@@ -23,27 +25,42 @@ nav{
     align-items: center;
 }
 
+.linkLogo{
+    text-decoration: none;
+    color: black;
+}
+
 .logoHeader{
-    height: 3rem;
-    width: 3rem;
+    font-family: "TAN nimbus";
+    margin: 0;
+    font-size: 1.2rem;
 }
 
 .logoCategoriesContainer{
     display: flex;
     align-items: center;
-}
-
-.logoCategoriesContainer .categories p{
-    font-size: small;
-    margin: 0.5rem;
+    height: 100%;
 }
 
 .categories{
-    margin-left: 1rem;
     display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.categories p{
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 450;
+    display: inline-block;
+    position: relative;
 }
 
 .searchBarCartContainer{
-    display: flex;
-    align-items: center;
+    width: 10.125rem;
+}
+
+.linkNavBar{
+    text-decoration: none;
+    color: black;
 }

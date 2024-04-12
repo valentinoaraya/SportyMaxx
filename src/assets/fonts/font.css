@@ -1,0 +1,7 @@
+@font-face{
+    font-family: "TAN nimbus";
+    src: url("./TAN-NIMBUS.otf") format("opentype"),
+         url("./TAN-NIMBUS.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}

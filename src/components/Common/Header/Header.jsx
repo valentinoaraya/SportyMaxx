@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import "./Header.css"
-import logo from "../../../assets/images/logo.png"
 import CartWidget from '../../CartWidget/CartWidget.jsx';
-import SearchBar from '../../SearchBar/SearchBar.jsx';
+import SubCategories from './SubCategories/SubCategories.jsx';
 import { Link } from 'react-router-dom';
+import categories from './dataCategories.js';
+
 
 const Header = () => {
 
     const [shadow, setShadow] = useState(false)
 
-    useEffect(()=>{
+    useEffect(() => {
         const handleScroll = () => {
             setShadow(window.scrollY > 50)
         }
@@ -20,23 +21,22 @@ const Header = () => {
 
     }, [])
 
-
     return (
         <header className={shadow ? 'headerShadow' : "border"}>
             <nav>
                 <div className='logoCategoriesContainer'>
-                    <Link to={"/"}>
-                        <img className='logoHeader' src={logo} alt="Logo" />
+                    <Link className='linkLogo' to={"/"}>
+                        <h1 className='logoHeader'>SPORTYMAXX</h1>
                     </Link>
-                    <div className='categories'>
-                        <p>Remeras</p>
-                        <p>Pantalones</p>
-                        <p>Zapatillas</p>
-                        <p>Accesorios</p>
-                    </div>
+                </div>
+                <div className='categories'>
+                    {
+                        categories.map((c)=>{
+                            return <SubCategories key={c.mainCategory} data={c}/>
+                        })
+                    }
                 </div>
                 <div className='searchBarCartContainer'>
-                    <SearchBar></SearchBar>
                     <CartWidget></CartWidget>
                 </div>
             </nav>

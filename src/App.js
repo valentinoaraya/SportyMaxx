@@ -1,5 +1,6 @@
 import './assets/styles/App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/fonts/font.css"
 import Header from './components/Common/Header/Header.jsx';
 import Main from './containers/Home/Main.jsx';
 import Footer from './components/Common/Footer/Footer.jsx';
