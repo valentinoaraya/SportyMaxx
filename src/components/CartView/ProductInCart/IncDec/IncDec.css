@@ -1,0 +1,9 @@
+.divIncDec{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.divIncDec p{
+    margin: 0;
+}

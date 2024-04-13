@@ -13,13 +13,14 @@ const CartContextProvider = ({children}) => {
         if (cartInStorage) setCart(cartInStorage)
     }
 
-    const addToCart = (item, count) => {
+    const addToCart = (item) => {
         let indexProduct = cart.findIndex(product => product.id === item.id)
         if (indexProduct === -1){
-            newCart.push({...item, count})
+            item.count = 1
+            newCart.push(item)
             setCart(newCart)
         } else {
-            newCart[indexProduct].count += count
+            newCart[indexProduct].count += 1
             setCart(newCart)
         }
         
@@ -48,6 +49,13 @@ const CartContextProvider = ({children}) => {
         return total
     }
 
+    const setQuantity = (id, count) => {
+        const indexProduct = cart.findIndex(product => product.id === id)
+        newCart[indexProduct].count = count
+        setCart(newCart)
+        localStorage.setItem("Cart", JSON.stringify(newCart))
+    }
+
     useEffect(()=>{
         isLocalStorage()
     },[])
@@ -56,11 +64,12 @@ const CartContextProvider = ({children}) => {
         <Provider
             value={{
                 cart,
-                cantidad: totalProducts,
+                totalProducts,
                 addToCart,
                 vaciarCarrito,
                 removeItem,
-                totalPrice
+                totalPrice,
+                setQuantity
             }}
         >
             {children}

@@ -7,11 +7,20 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const ProductDetail = ({ product }) => {
 
-    const { addToCart } = useContext(cartContext)
+    const { addToCart, cart } = useContext(cartContext)
 
-    const notify = () => toast.success("Agregado a la bolsa.", {
-        theme: "colored"
+    const notify = () => toast.success("Agregado al carrito.", {
+        theme: "colored",
+        pauseOnHover: false
     })
+
+    const count = cart.find(prod => prod.id === product.id)?.count || 0
+    
+    let enabledDisabled = false
+
+    if (product.stock === 0 || count === product.stock) {
+        enabledDisabled = true
+    }
 
     return (
         <section className='sectionProductDetail'>
@@ -50,7 +59,7 @@ const ProductDetail = ({ product }) => {
                     <Button
                         onFinish={() => addToCart(product, 1)}
                         color={"btn-dark allwidth"}
-                        enabledDisabled={product.stock === 0 ? true : false}
+                        enabledDisabled={enabledDisabled}
                     >
                         Agregar al carrito
                     </Button>

@@ -22,6 +22,10 @@
     padding: 1rem;
 }
 
+.productInfo p{
+    margin: 0;
+}
+
 .deleteProduct{
     height: 100%;
 }
@@ -33,4 +37,8 @@
 
 .offcanvas-body{
     padding-top: 0;
+}
+
+.divIncDec{
+    margin-top: 0.5rem;
 }
