@@ -1,0 +1,36 @@
+.cardProductInCart{
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+}
+
+.divProductInCartIMG img{
+    width: 8rem;
+}
+
+.divProductInCartInfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.productInfo{
+    padding: 1rem;
+}
+
+.deleteProduct{
+    height: 100%;
+}
+
+.deleteProduct div{
+    margin: 0.5rem 0.5rem 0 0;
+    cursor: pointer;
+}
+
+.offcanvas-body{
+    padding-top: 0;
+}

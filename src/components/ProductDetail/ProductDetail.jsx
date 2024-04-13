@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import "./ProductDetail.css"
 import Carousel from '../Carousel/Carousel.jsx';
 import Button from '../Button/Button.jsx';
+import { cartContext } from '../../context/CartContext.jsx';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProductDetail = ({ product }) => {
+
+    const { addToCart } = useContext(cartContext)
+
+    const notify = () => toast.success("Agregado a la bolsa.", {
+        theme: "colored"
+    })
+
     return (
         <section className='sectionProductDetail'>
             <div className='divImgProductDetail'>
@@ -37,10 +46,19 @@ const ProductDetail = ({ product }) => {
                     </div>
                     <h4>Guía de talles</h4>
                 </div>
-                <div className='divAgregarCarrito'>
-                    <Button color={"btn-dark allwidth"}>Agregar al carrito</Button>
+                <div className='divAgregarCarrito' onClick={notify}>
+                    <Button
+                        onFinish={() => addToCart(product, 1)}
+                        color={"btn-dark allwidth"}
+                        enabledDisabled={product.stock === 0 ? true : false}
+                    >
+                        Agregar al carrito
+                    </Button>
                 </div>
             </div>
+            <ToastContainer
+                autoClose={2000}
+            />
         </section>
     );
 }

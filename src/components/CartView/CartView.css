@@ -1,0 +1,41 @@
+.bolsaComprasTitle{
+    font-family: "DM sans";
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.offcanvas-header{
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.offcanvas-header h5{
+    margin: 0;
+}
+
+#offcanvasNavbar{
+    width: 40%;
+}
+
+.offcanvas-body{
+    padding-bottom: 10.313rem;
+}
+
+.divFinishCart{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    padding: 1rem;
+    width: 40%;
+    border-top: 1px solid #d9d9d9;
+}
+
+.botonCart{
+    width: 100%;
+}
+
+.boton1{
+    margin-bottom: 1rem;
+}

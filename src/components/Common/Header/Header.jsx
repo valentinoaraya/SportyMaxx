@@ -37,7 +37,7 @@ const Header = () => {
                     }
                 </div>
                 <div className='searchBarCartContainer'>
-                    <CartWidget></CartWidget>
+                    <CartWidget/>
                 </div>
             </nav>
         </header>
