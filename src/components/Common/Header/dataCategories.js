@@ -1,31 +1,31 @@
 const categories = [
     {
         "mainCategory": "Remeras",
-        "subCategories": ["Manga corta", "Manga larga", "Chombas"]
+        "categories": ["Manga corta", "Manga larga", "Chombas"]
     },
     {
         "mainCategory": "Buzos",
-        "subCategories": ["Con capucha", "Sin capucha"]
+        "categories": ["Con capucha", "Sin capucha"]
     },
     {
         "mainCategory": "Camisas",
-        "subCategories": []
+        "categories": []
     },
     {
         "mainCategory": "Pantalones",
-        "subCategories": ["Jeans", "Gabardina", "Algodón"]
+        "categories": ["Jeans", "Gabardina", "Algodón"]
     },
     {
         "mainCategory": "Bermudas",
-        "subCategories": ["Algodón", "Gabardina"]
+        "categories": ["Algodón", "Gabardina"]
     },
     {
         "mainCategory": "Mallas",
-        "subCategories": []
+        "categories": []
     },
     {
         "mainCategory": "Accesorios",
-        "subCategories": ["Medias", "Boxers", "Billeteras", "Gorros", "Pilusos", "Gorras", "Australianos"]
+        "categories": ["Medias", "Boxers", "Billeteras", "Gorros", "Pilusos", "Gorras", "Australianos"]
     }
 ]
 

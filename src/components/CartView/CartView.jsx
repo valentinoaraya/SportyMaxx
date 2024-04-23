@@ -47,7 +47,7 @@ const CartView = () => {
                         {
                             totalPriceCart !== 0 &&
                                 <div className='divTotalPrice'>
-                                    <p>Total de la bolsa: $ {totalPriceCart}</p>
+                                    <p>Total del carrito: $ {totalPriceCart}</p>
                                 </div>
                         }
                         <div className='botonCart boton1'>

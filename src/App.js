@@ -3,12 +3,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/fonts/font.css"
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Common/Header/Header.jsx';
-import Main from './containers/Home/Main.jsx';
 import Footer from './components/Common/Footer/Footer.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProductDetailContainer from './containers/ProductDetailContainer/ProductDetailContainer.jsx';
 import ScrollTop from './components/ScrollTop/ScrollTop.jsx';
 import { CartContextProvider } from './context/CartContext.jsx';
+import ProductListContainer from './containers/ProductListContainer/ProductListContainer.jsx';
 
 function App() {
   return (
@@ -18,7 +18,8 @@ function App() {
           <ScrollTop />
           <Header />
           <Routes>
-            <Route path='/' element={<Main />}></Route>
+            <Route path='/' element={<ProductListContainer />}></Route>
+            <Route path='/category/:categoria' element={<ProductListContainer />}></Route>
             <Route path='/item/:id' element={<ProductDetailContainer />}></Route>
           </Routes>
           <Footer />

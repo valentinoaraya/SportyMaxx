@@ -9,3 +9,13 @@
 .titleFooterSection{
     font-weight: 900;
 }
+
+.linkFooter{
+    text-decoration: none;
+    color: white;
+    display: flex;
+}
+
+.linkFooter svg{
+    margin-right: 0.5rem;
+}

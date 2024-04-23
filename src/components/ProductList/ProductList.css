@@ -6,3 +6,10 @@
     align-items: center;
     max-width: 1300px;
 }
+
+.titleNoProducts{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Footer.css"
-import SectionFooter from '../SectionFooter/SectionFooter.jsx';
+import SectionFooter from './SectionFooter/SectionFooter.jsx';
 
 const Footer = () => {
 
@@ -8,7 +8,7 @@ const Footer = () => {
     const arrayMediosPago = ["Mercado Pago"]
     const arrayMediosEnvio = ["Correo Argentino"]
     const arrayContact = ["+54 2625123456"]
-    const arraySocials = ["Logo Instagram"]
+    const arraySocials = ["Instagram"]
     const arrayAddress =["Avenida Alvear Este 74", "General Alvear, Mendoza, Argentina"]
 
     return (

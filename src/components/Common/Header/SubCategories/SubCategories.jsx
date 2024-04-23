@@ -12,12 +12,12 @@ const SubCategories = ({data}) => {
             </p>
             <ul className="dropdown-menu">
                 {
-                    data.subCategories.map((e)=>{
-                        return <li key={e}><Link to={`/category/:${e.toLowerCase()}`} className="dropdown-item">{e}</Link></li>
+                    data.categories.map((e)=>{
+                        return <li key={e}><Link to={`/category/${e.toLowerCase().replace(' ', '-')}`} className="dropdown-item">{e}</Link></li>
                     })
                 }
                 <li><hr className="dropdown-divider" /></li>
-                <li><Link to={`/category/:${data.mainCategory.toLowerCase()}`} className="dropdown-item">Ver Todo</Link></li>
+                <li><Link to={`/category/${data.mainCategory.toLowerCase()}`} className="dropdown-item">Ver Todo</Link></li>
             </ul>
         </div>
     );
