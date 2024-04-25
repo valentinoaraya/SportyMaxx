@@ -7,8 +7,8 @@ const SectionCategory = () => {
     return (
         <section className='sectionCategory'>
             <DivCategory title={"VCP"} id={"vcp"} />
-            <DivCategory title={"ZAPATILLAS"} id={"zapas"}/>
-            <DivCategory title={"BUZOS"} id={"buzos"}/>
+            <DivCategory title={"HARVEY WILLYS"} id={"zapas"}/>
+            <DivCategory title={"VIEJASCUL"} id={"buzos"}/>
         </section>
     );
 }

@@ -13,7 +13,7 @@ const ProductListContainer = () => {
 
     useEffect(() => {
         if (categoria) {
-            setTitle(`${categoria.replace("-", " ").charAt(0).toUpperCase() + categoria.replace("-", " ").slice(1)}`)
+            setTitle(`${categoria.replace("-", " ").toUpperCase()}`)
         } else {
             setTitle("Productos destacados")
         }
