@@ -61,4 +61,8 @@
     .subtitleBanner{
         font-size: 1.5rem;
     }
+
+    .presentacion{
+        height: 50vh;
+    }
 }
