@@ -59,3 +59,19 @@
     }
     
 }
+
+@media screen and (max-width: 450px){
+
+    .card{
+        width: 10rem;
+        height: 25rem;
+    }
+
+    .card-title{
+        font-size: 0.8rem;
+    }
+    
+    .imgProduct{
+        height: 17rem;
+    }
+}
