@@ -4,7 +4,7 @@ import SectionFooter from './SectionFooter/SectionFooter.jsx';
 
 const Footer = () => {
 
-    const arrayCategories = ["Remeras", "Pantalones", "Zapatillas", "Accesorios",]
+    const arrayCategories = ["Remeras", "Buzos", "Camisas", "Pantalones", "Bermudas", "Mallas", "Accesorios"]
     const arrayMediosPago = ["Mercado Pago", "Tarjetas"]
     const arrayMediosEnvio = ["Correo Argentino"]
     const arrayContact = ["+54 2625123456"]

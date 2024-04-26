@@ -61,3 +61,26 @@
 #buzos:hover{
     background-size: auto 110%;
 }
+
+@media screen and (max-width: 1200px) {
+    .sectionCategory{
+        flex-direction: column;
+    }
+
+    .link-divCategory{
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .divCategory{
+        height: 30rem;
+    }
+
+    #vcp, #zapas, #buzos{
+        background-size: 100% auto;
+    }
+
+    #vcp:hover, #zapas:hover, #buzos:hover{
+        background-size: 110% auto;
+    }
+}

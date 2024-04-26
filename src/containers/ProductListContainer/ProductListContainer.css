@@ -5,3 +5,9 @@
     align-items: center;
     margin: 1rem 5rem 1rem 5rem;
 }
+
+@media screen and (max-width: 770px) {
+    .mainContainer{
+        margin: 1rem;
+    }
+}

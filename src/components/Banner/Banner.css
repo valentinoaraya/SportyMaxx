@@ -41,3 +41,13 @@
     font-weight: normal;
     margin: 0;
 }
+
+@media screen and (max-width: 770px) {
+    .titleBanner{
+        font-size: 3rem;
+    }
+
+    .subtitleBanner{
+        font-size: 2rem;
+    }
+} 

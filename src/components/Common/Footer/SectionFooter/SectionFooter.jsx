@@ -1,5 +1,6 @@
 import React from 'react';
 import "./SectionFooter.css"
+import { Link } from 'react-router-dom';
 
 const SectionFooter = ({ titleSection1, titleSection2, arraySubtitles1, arraySubtitles2 }) => {
 
@@ -15,6 +16,9 @@ const SectionFooter = ({ titleSection1, titleSection2, arraySubtitles1, arraySub
                 {
                     arraySubtitles1.map((element) => {
                         if (titleSection1 !== "MEDIOS DE PAGO") {
+                            if (titleSection1 === "CATEGORÍAS"){
+                                return <Link key={element} className='linkFooter' to={`/category/${element.toLowerCase().replace(' ', '-')}`} >{element}</Link>
+                            }
                             return <p key={element}>{element}</p> // Aquí van los elementos que necesitan un link o redirección
                         } else {
                             return <p key={element}>{element}</p> // Aquí van los medios de pago y envío

@@ -8,5 +8,18 @@ footer{
     display: flex;
     justify-content: space-between;
     align-items: start;
+}
 
+.linkFooter{
+    margin: 0.5rem 0;
+}
+
+@media screen and (max-width: 1000px) {
+    .sectionsContainer{
+        flex-direction: column;
+    }
+
+    .sectionFooter{
+        margin: 1rem 0;
+    }
 }

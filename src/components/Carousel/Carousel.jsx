@@ -1,14 +1,15 @@
 import React from 'react';
+import './Carousel.css';
 
 const Carousel = ({imagen1, imagen2}) => {
     return (
         <div id="carouselExample" className="carousel slide">
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img src={imagen1} className="d-block w-100" alt="..."/>
+                    <img src={imagen1} className="d-block" alt="Imagen Producto"/>
                 </div>
                 <div className="carousel-item">
-                    <img src={imagen2} className="d-block w-100" alt="..."/>
+                    <img src={imagen2} className="d-block" alt="Imagen Producto"/>
                 </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

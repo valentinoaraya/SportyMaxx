@@ -8,6 +8,10 @@
     margin: 0rem;
 }
 
+.card{
+    width: 18rem;
+}
+
 .imgProduct{
     margin-bottom: 0.8rem;
     height: 26.804rem;
@@ -37,4 +41,21 @@
 
 .card:hover .defaultImage{
     opacity: 0;
+}
+
+@media screen and (max-width: 770px) {
+    
+    .card{
+        width: 12rem;
+        height: 27rem;
+    }
+
+    .card-title{
+        font-size: 0.8rem;
+    }
+    
+    .imgProduct{
+        height: 20rem;
+    }
+    
 }
