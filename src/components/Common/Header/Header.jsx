@@ -4,6 +4,7 @@ import CartWidget from '../../CartWidget/CartWidget.jsx';
 import SubCategories from './SubCategories/SubCategories.jsx';
 import { Link } from 'react-router-dom';
 import categories from './dataCategories.js';
+import ButtonCategoriesMobile from './ButtonCategoriesMobile/ButtonCategoriesMobile.jsx';
 
 
 const Header = () => {
@@ -23,7 +24,10 @@ const Header = () => {
 
     return (
         <header className={shadow ? 'headerShadow' : "border"}>
-            <nav>
+            <nav className='navBar'>
+                <div className='buttonCategories searchBarCartContainer'>
+                    <ButtonCategoriesMobile data={categories}/>
+                </div>
                 <div className='logoCategoriesContainer'>
                     <Link className='linkLogo' to={"/"}>
                         <h1 className='logoHeader'>SPORTYMAXX</h1>

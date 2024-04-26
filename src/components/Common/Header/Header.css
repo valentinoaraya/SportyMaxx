@@ -1,4 +1,4 @@
-header{
+header {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -12,11 +12,11 @@ header{
     z-index: 1000;
 }
 
-.headerShadow{
+.headerShadow {
     box-shadow: 0 1px 20px black;
 }
 
-nav{
+nav {
     display: flex;
     width: 1300px;
     height: 7vh;
@@ -25,30 +25,34 @@ nav{
     align-items: center;
 }
 
-.linkLogo{
+.navBarMobile {
+    display: none;
+}
+
+.linkLogo {
     text-decoration: none;
     color: black;
 }
 
-.logoHeader{
+.logoHeader {
     font-family: "TAN nimbus";
     margin: 0;
     font-size: 1.2rem;
 }
 
-.logoCategoriesContainer{
+.logoCategoriesContainer {
     display: flex;
     align-items: center;
     height: 100%;
 }
 
-.categories{
+.categories {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.categories p{
+.categories p {
     font-size: 1rem;
     margin: 0;
     font-weight: 450;
@@ -56,11 +60,31 @@ nav{
     position: relative;
 }
 
-.searchBarCartContainer{
+.searchBarCartContainer {
     width: 10.125rem;
 }
 
-.linkNavBar{
+.linkNavBar {
     text-decoration: none;
     color: black;
+}
+
+.buttonCategories{
+    display: none;
+}
+
+@media screen and (max-width: 1300px) {
+    
+    .buttonCategories{
+        display: block;
+    }
+
+    .categories{
+        display: none;
+    }
+
+    nav{
+        width: 100%;
+    }
+
 }

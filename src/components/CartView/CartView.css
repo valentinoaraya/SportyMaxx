@@ -62,3 +62,13 @@
     justify-content: center;
     align-items: center;
 }
+
+@media screen and (max-width: 1300px) {
+    #offcanvasNavbar{
+        width: 100%;
+    }
+
+    .divFinishCart{
+        width: 100%;
+    }
+}
