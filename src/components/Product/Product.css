@@ -64,7 +64,7 @@
 
     .card{
         width: 10rem;
-        height: 25rem;
+        height: 22rem;
     }
 
     .card-title{
@@ -72,6 +72,6 @@
     }
     
     .imgProduct{
-        height: 17rem;
+        height: 15rem;
     }
 }
