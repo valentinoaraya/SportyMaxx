@@ -9,6 +9,8 @@ import ProductDetailContainer from './containers/ProductDetailContainer/ProductD
 import ScrollTop from './components/ScrollTop/ScrollTop.jsx';
 import { CartContextProvider } from './context/CartContext.jsx';
 import ProductListContainer from './containers/ProductListContainer/ProductListContainer.jsx';
+import UserInfoContainer from './containers/UserInfoContainer/UserInfoContainer.jsx';
+import LoginRegisterContainer from './containers/LoginRegisterContainer/LoginRegisterContainer.jsx';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
             <Route path='/' element={<ProductListContainer />}></Route>
             <Route path='/category/:categoria' element={<ProductListContainer />}></Route>
             <Route path='/item/:id' element={<ProductDetailContainer />}></Route>
+            <Route path='/user-info' element={<UserInfoContainer /> }></Route>
+            <Route path='/user/:action' element={<LoginRegisterContainer /> } ></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

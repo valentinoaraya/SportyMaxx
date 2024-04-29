@@ -4,7 +4,7 @@ import ProductList from '../../components/ProductList/ProductList.jsx';
 import Banner from '../../components/Banner/Banner.jsx';
 import TitleSectionMain from '../../components/TitleSectionMain/TitleSectionMain.jsx';
 import SectionCategory from '../../components/SectionCategory/SectionCategory.jsx';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 const ProductListContainer = () => {
 
