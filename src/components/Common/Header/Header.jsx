@@ -5,6 +5,7 @@ import SubCategories from './SubCategories/SubCategories.jsx';
 import { Link } from 'react-router-dom';
 import categories from './dataCategories.js';
 import ButtonCategoriesMobile from './ButtonCategoriesMobile/ButtonCategoriesMobile.jsx';
+import ButtonUserInfo from './ButtonUserInfo/ButtonUserInfo.jsx';
 
 
 const Header = () => {
@@ -41,6 +42,7 @@ const Header = () => {
                     }
                 </div>
                 <div className='searchBarCartContainer'>
+                    <ButtonUserInfo/>
                     <CartWidget/>
                 </div>
             </nav>

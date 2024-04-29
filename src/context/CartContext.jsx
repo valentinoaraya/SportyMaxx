@@ -19,11 +19,12 @@ const CartContextProvider = ({children}) => {
             item.count = 1
             newCart.push(item)
             setCart(newCart)
+            console.log(newCart)
         } else {
             newCart[indexProduct].count += 1
             setCart(newCart)
+            console.log(newCart)
         }
-        
         localStorage.setItem("Cart", JSON.stringify(newCart))
     }
 
