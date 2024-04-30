@@ -11,6 +11,7 @@ import { CartContextProvider } from './context/CartContext.jsx';
 import ProductListContainer from './containers/ProductListContainer/ProductListContainer.jsx';
 import UserInfoContainer from './containers/UserInfoContainer/UserInfoContainer.jsx';
 import LoginRegisterContainer from './containers/LoginRegisterContainer/LoginRegisterContainer.jsx';
+import FormAddProductContainer from './containers/FormAddProductContainer/FormAddProductContainer.jsx';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path='/item/:id' element={<ProductDetailContainer />}></Route>
             <Route path='/user-info' element={<UserInfoContainer /> }></Route>
             <Route path='/user/:action' element={<LoginRegisterContainer /> } ></Route>
+            <Route path='/add-product' element={<FormAddProductContainer /> }></Route>
           </Routes>
           <Footer />
         </BrowserRouter>
