@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import "./ProductList.css"
 import Product from '../Product/Product.jsx';
-import arrayProducts from '../../ddbb/database.js';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 const ProductList = () => {
 
     const { categoria } = useParams();
     const [productosFiltrados, setProductosFiltrados] = useState([]);
+    const location = useLocation();
     
     useEffect(() => {
-        //setProductosFiltrados(arrayProducts.filter((e)=>e.categories.includes(categoria)))
-        //if (!categoria) setProductosFiltrados(arrayProducts.filter((e)=>e.categories.includes("destacado")))
 
         const getProducts = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/?category=${categoria || ""}`)
+
+                let response = []
+
+                if (location.pathname === "/"){
+                    response = await axios.get(`http://localhost:4000/?category=${categoria || "destacado"}`)
+                } else {
+                    response = await axios.get(`http://localhost:4000/?category=${categoria || ""}`)
+                }
+                    
                 setProductosFiltrados(response.data.data)
             } catch (error) {
                 console.log(error)
@@ -25,7 +32,7 @@ const ProductList = () => {
 
         getProducts()
 
-    }, [categoria])
+    }, [categoria, location.pathname])
 
     return (
         <div className='divListProducts'>

@@ -12,6 +12,8 @@ import ProductListContainer from './containers/ProductListContainer/ProductListC
 import UserInfoContainer from './containers/UserInfoContainer/UserInfoContainer.jsx';
 import LoginRegisterContainer from './containers/LoginRegisterContainer/LoginRegisterContainer.jsx';
 import FormAddProductContainer from './containers/FormAddProductContainer/FormAddProductContainer.jsx';
+import EditProductsContainer from './containers/EditProductsContainer/EditProductsContainer.jsx';
+import ProductToEditContainer from './containers/ProductToEditContainer/ProductToEditContainer.jsx';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
             <Route path='/user-info' element={<UserInfoContainer /> }></Route>
             <Route path='/user/:action' element={<LoginRegisterContainer /> } ></Route>
             <Route path='/add-product' element={<FormAddProductContainer /> }></Route>
+            <Route path='/edit-product' element={<EditProductsContainer /> }></Route>
+            <Route path='/edit-product/:id' element={<ProductToEditContainer/> }></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

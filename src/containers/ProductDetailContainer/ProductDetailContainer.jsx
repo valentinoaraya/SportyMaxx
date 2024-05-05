@@ -7,11 +7,6 @@ import axios from 'axios';
 const ProductDetailContainer = () => {
 
     const {id} = useParams()
-
-    // const product = arrayProducts.find((e)=>{
-    //     return e.id == id
-    // })
-
     const [product, setProduct] = useState({})
 
     useEffect(() => {

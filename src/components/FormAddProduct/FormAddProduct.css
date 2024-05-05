@@ -1,0 +1,19 @@
+.divFormAddProduct{
+    max-width: 1300px;
+    width: 100%;
+}
+
+.formAddProduct{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.divFormAddProduct{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin-bottom: 10rem;
+}

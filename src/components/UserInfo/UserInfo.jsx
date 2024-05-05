@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { getCurrentUser, signOutUser, getCurrentUserRole } from "../../services/firebase.js";
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button.jsx';
-import "./UserInfo.css"
+import TitleSectionMain from "../TitleSectionMain/TitleSectionMain.jsx";
+import "./UserInfo.css";
 
 const UserInfo = () => {
 
@@ -33,26 +34,34 @@ const UserInfo = () => {
     }
 
     return (
-        <div>
+        <div className='divUserInfo'>
             {
                 user ? 
-                <div>
-                    <p>Hola {user.email}</p> 
+                <div className='divIniciarSesionRegistrarse'>
+                    <h2>Hola {user.email}</h2> 
                     {
                         role && 
-                        <div>
+                        <div className='divRol'>
                             <p>Tu rol es: {role}</p>
-                            <Link to={"/add-product/"}> <Button color={"btn-dark"}>Agregar Producto</Button> </Link>
+                            <Link to={"/add-product/"} className='linkButtonAdmin'> <Button color={"btn-dark allwidth"}>Agregar Producto</Button> </Link>
+                            <Link to={"/edit-product/"} className='linkButtonAdmin'> <Button color={"btn-dark allwidth"}>Editar producto</Button> </Link>
                         </div>
                     }
                     <Button color={"btn-dark"} onFinish={handleSignOut} >Cerrar Sesión</Button>
                 </div>
                 :
-                <div>
-                    <p>¿Tienes cuenta?</p>
-                    <Link to="/user/login">Iniciar sesion</Link>
-                    <p>¿No tienes cuenta?</p>
-                    <Link to="/user/register">Registrarse</Link>
+                <div className='divIniciarSesionRegistrarse'>
+                    <TitleSectionMain title={"Inicia sesión o regístrate"}/>
+                    <div>
+                        <div>              
+                            <p>¿Tienes cuenta?</p>
+                            <Link to="/user/login" className='linkButton'> <Button color={"btn-dark allwidth"}>Iniciar Sesión</Button> </Link>
+                        </div>
+                        <div>
+                            <p>¿No tienes cuenta?</p>
+                            <Link to="/user/register" className='linkButton'> <Button color={"btn-dark allwidth"}>Regístrate</Button> </Link>
+                        </div>
+                    </div>
                 </div> 
             }
         </div>

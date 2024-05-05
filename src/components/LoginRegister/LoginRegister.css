@@ -1,0 +1,24 @@
+.divLoginRegister{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginRegister{
+    height: 50vh;
+}
+
+.formLoginRegister{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 5rem;
+}
+
+input {
+    margin: 0.5rem 0.5rem;
+}
+
+label{
+    margin-bottom: 1rem;
+}

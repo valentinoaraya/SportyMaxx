@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import "./LoginRegister.css"
 import { useParams } from 'react-router-dom';
 import { signInUser, registerUser } from '../../services/firebase.js';
+import TitleSectionMain from "../TitleSectionMain/TitleSectionMain.jsx";
+import Button from "../Button/Button.jsx";
+import { useNavigate } from 'react-router-dom';
 
 const LoginRegister = () => {
 
@@ -10,22 +13,26 @@ const LoginRegister = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate("/user-info")
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try{
             if (action === "login") {
-                signInUser(email, password)
+                await signInUser(email, password)
             } else {
-                registerUser(email, password)
+                await registerUser(email, password)
             }
+            navigate("/user-info")
         } catch (error) {
             console.log(error)
         }
     }
 
     return (
-        <div>
-            <div>
+        <div className='loginRegister'>
+            <div className='divLoginRegister'>
+                <TitleSectionMain title={action === "login" ? "Iniciar Sesión" : "Registrarse"} />
                 <form onSubmit={handleSubmit} className="formLoginRegister">
                     <label>
                         Correo Electrónico:
@@ -43,7 +50,7 @@ const LoginRegister = () => {
                             required
                         />
                     </label>
-                    <input type="submit" value={action === "login" ? "Iniciar Sesión" : "Registrarse" } />
+                    <Button color={"btn-dark"} type={"submit"} >{action === "login" ? "Iniciar Sesión" : "Registrarse" }</Button>
                 </form>
             </div>
             

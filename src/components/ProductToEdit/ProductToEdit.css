@@ -1,0 +1,10 @@
+.divProductToEditContainer{
+    display: flex;
+    margin: 5rem 0;
+}
+
+.divImgCurrentProductContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}

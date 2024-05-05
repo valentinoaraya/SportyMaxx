@@ -1,3 +1,6 @@
 .divUserInfoContainer{
     margin-top: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

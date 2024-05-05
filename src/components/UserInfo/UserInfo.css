@@ -1,0 +1,34 @@
+.divUserInfo{
+    height: 50vh;
+}
+
+.divIniciarSesionRegistrarse{
+    display: flex;
+    flex-direction: column;
+}
+
+.divIniciarSesionRegistrarse div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.divIniciarSesionRegistrarse div div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.linkButton{
+    width: 100%;
+}
+
+.divRol{
+    display: flex;
+    flex-direction: column;
+}
+
+.linkButtonAdmin{
+    margin-bottom: 1rem;
+}

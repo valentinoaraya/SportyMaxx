@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import "./FormAddProduct.css"
 import axios from 'axios';
+import {getCurrentUserRole} from "../../services/firebase.js";
+import Button from '../Button/Button.jsx';
 
 const FormAddProduct = () => {
 
@@ -23,6 +25,9 @@ const FormAddProduct = () => {
 
     const handleSumit = async (e) => {
         e.preventDefault();
+
+        const userRole = await getCurrentUserRole()
+
         const formData = new FormData();
         formData.append("nombre", nombreProducto);
         formData.append("precio", precio);
@@ -30,6 +35,7 @@ const FormAddProduct = () => {
         formData.append("categories",categories);
         formData.append("imagen",imagen);
         formData.append("imagenSecundaria",imagenSecundario);
+        formData.append("userRole", userRole)
 
         try {
             console.log("Enviando formulario...")
@@ -53,7 +59,7 @@ const FormAddProduct = () => {
     return (
         <div className='divFormAddProduct'>
             <h1>Agregar un producto</h1>
-            <form onSubmit={handleSumit}>
+            <form onSubmit={handleSumit} className='formAddProduct'>
                 <label>
                     Nombre del producto:
                     <input 
@@ -106,7 +112,7 @@ const FormAddProduct = () => {
                         required
                     />
                 </label>
-                <button type="submit">Cargar producto</button>
+                <Button color={"btn-dark"} type={"submit"} >Cargar producto</Button>  
             </form>
         </div>
     );
