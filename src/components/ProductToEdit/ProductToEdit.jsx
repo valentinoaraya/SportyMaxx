@@ -1,26 +1,27 @@
 import React from 'react';
 import './ProductToEdit.css'
+import FormUpdateProduct from '../FormUpdateProduct/FormUpdateProduct.jsx';
 
 const ProductToEdit = ({product, categories}) => {
     
     return (
         <div className='divProductToEditContainer'>
             <div className='divInfoCurrentProduct'>
-                <h2>Producto Actual</h2>
+                <h2>Producto actual:</h2>
                 <div className='divImgCurrentProductContainer'>
                     <div>
-                        <h3>Imagen principal: </h3>
+                        <p>Imagen principal: </p>
                         <img src={product.imagen} alt="Imagen principal" />
                     </div>
                     <div>
-                        <h3>Imagen secundaria: </h3>
+                        <p>Imagen secundaria: </p>
                         <img src={product.imagenSecundaria} alt="Imagen secundaria" />
                     </div>
                 </div>
-                <h3>Nombre: {product.nombre}</h3>
-                <h3>Precio: ${product.precio}</h3>
-                <h3>Disponibles: {product.stock}</h3>
-                <h3>Categorias: </h3>
+                <p><span>Nombre:</span> {product.nombre}</p>
+                <p><span>Precio:</span> ${product.precio}</p>
+                <p><span>Stock:</span> {product.stock}</p>
+                <p><span>Categorias:</span> </p>
                 <ul>
                     {
                         categories.map((cat)=>{
@@ -31,7 +32,8 @@ const ProductToEdit = ({product, categories}) => {
                 
             </div>
             <div className='formEdit'>
-
+                <h2>Actualizar producto:</h2>
+                <FormUpdateProduct/>
             </div>
         </div>
     );

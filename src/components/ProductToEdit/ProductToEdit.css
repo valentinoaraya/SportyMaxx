@@ -1,10 +1,25 @@
 .divProductToEditContainer{
     display: flex;
     margin: 5rem 0;
+    width: 100%;
+}
+
+.divInfoCurrentProduct{
+    width: 50%;
 }
 
 .divImgCurrentProductContainer{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 1rem;
+}
+
+.divImgCurrentProductContainer div img{
+    width: 12rem;
+}
+
+.formEdit{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
 }

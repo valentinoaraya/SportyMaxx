@@ -1,0 +1,9 @@
+.formUpdateProduct{
+    width: min-content;
+}
+
+.divFormUpdateProduct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
