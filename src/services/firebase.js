@@ -17,6 +17,9 @@ const app = initializeApp(firebaseConfig);
 export const registerUser = async (email, password) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(getAuth(app),email, password)
+        const token = await userCredential.user.getIdToken() // Obtengo el token de Firebase Authentication
+        localStorage.setItem("token", token) // Almaceno el token en el localStorage
+        console.log("Usuario registrado correctamente")
         return userCredential.user;
     } catch (error) {
         console.log(error)
@@ -28,6 +31,8 @@ export const registerUser = async (email, password) => {
 export const signInUser = async (email, password) => {
     try {
         const userCredential = await signInWithEmailAndPassword(getAuth(app),email, password)
+        const token = await userCredential.user.getIdToken() // Obtengo el token de Firebase Authentication
+        localStorage.setItem("token", token) // Almaceno el token en el localStorage
         console.log("Sesion iniciada correctamente")
         return userCredential.user
     } catch (error) {
@@ -40,6 +45,7 @@ export const signInUser = async (email, password) => {
 export const signOutUser = async () => {
     try {
         await getAuth(app).signOut()
+        localStorage.removeItem("token")
         console.log("Sesion cerrada correctamente")
     } catch (error) {
         console.log("Error al cerrar sesión: ", error)

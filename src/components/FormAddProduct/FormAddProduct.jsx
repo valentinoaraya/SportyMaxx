@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "./FormAddProduct.css"
 import axios from 'axios';
-import {getCurrentUserRole} from "../../services/firebase.js";
 import Button from '../Button/Button.jsx';
 
 const FormAddProduct = () => {
@@ -12,6 +11,9 @@ const FormAddProduct = () => {
     const [categories, setCategories] = useState([])
     const [imagen, setImagen] = useState(null)
     const [imagenSecundario, setImagenSecundaria] = useState(null)
+
+    // Obtengo el token de usuario
+    const token = localStorage.getItem("token")
 
     const handleImagenChange = (e) => {
         const file = e.target.files[0];
@@ -26,8 +28,6 @@ const FormAddProduct = () => {
     const handleSumit = async (e) => {
         e.preventDefault();
 
-        const userRole = await getCurrentUserRole()
-
         const formData = new FormData();
         formData.append("nombre", nombreProducto);
         formData.append("precio", precio);
@@ -35,13 +35,13 @@ const FormAddProduct = () => {
         formData.append("categories",categories);
         formData.append("imagen",imagen);
         formData.append("imagenSecundaria",imagenSecundario);
-        formData.append("userRole", userRole)
 
         try {
             console.log("Enviando formulario...")
             const resolve = await axios.post("http://localhost:4000/add-product", formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data"
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`
                 }
             })
 

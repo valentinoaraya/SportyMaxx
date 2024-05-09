@@ -40,7 +40,7 @@ const UserInfo = () => {
                 <div className='divIniciarSesionRegistrarse'>
                     <h2>Hola {user.email}</h2> 
                     {
-                        role && 
+                        role === "admin" && 
                         <div className='divRol'>
                             <p>Tu rol es: {role}</p>
                             <Link to={"/add-product/"} className='linkButtonAdmin'> <Button color={"btn-dark allwidth"}>Agregar Producto</Button> </Link>

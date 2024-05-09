@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import './FormUpdateProduct.css'
-import { getCurrentUserRole } from '../../services/firebase.js';
 import Button from '../Button/Button.jsx';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -8,6 +7,8 @@ import { useParams } from 'react-router-dom';
 const FormUpdateProduct = () => {
 
     const { id } = useParams();
+
+    const token = localStorage.getItem("token")
     
     const [nombreProducto, setNombreProducto] = useState("")
     const [precio, setPrecio] = useState("")
@@ -29,9 +30,6 @@ const FormUpdateProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const userRole = await getCurrentUserRole()
-        console.log(userRole)
-
         const formData = new FormData();
         if (nombreProducto) formData.append("nombre", nombreProducto);
         if (precio) formData.append("precio", precio);
@@ -39,14 +37,14 @@ const FormUpdateProduct = () => {
         if (categories.length !== 0) formData.append("categories",categories);
         if (imagen) formData.append("imagen",imagen);
         if (imagenSecundario) formData.append("imagenSecundaria",imagenSecundario);
-        formData.append("userRole", userRole)
 
         try {
             console.log("Enviando formulario...")
             console.log(formData)
             const resolve = await axios.put(`http://localhost:4000/edit-product/${id}`, formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data"
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`
                 }
             })
 
@@ -63,11 +61,14 @@ const FormUpdateProduct = () => {
 
     const deleteProduct = async () => {
 
-        const userRole = await getCurrentUserRole()
         console.log("Eliminando producto...")
         try {
-            // Es importante quitar luego el req.body (o la información enviada) para el método delete, ya que está desaconsejado
-            const response = await axios.post(`http://localhost:4000/delete-product/${id}`, {userRole})
+            const response = await axios.delete(`http://localhost:4000/delete-product/${id}`, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`
+                }
+            })
             console.log(response)
             if (response.status === 200) {
                 console.log("Producto eliminado con exito")
