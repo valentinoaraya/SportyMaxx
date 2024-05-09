@@ -15,8 +15,8 @@ const Product = ({ nombre, imagen, imagenSecundaria, precio, id }) => {
     return (
         <Link className='link' to={`/${path}/${id}`}>
             <div className="card divProduct">
-                <img src={imagen} className="card-img-top imgProduct defaultImage" alt="Imagen Producto" />
-                <img src={imagenSecundaria} className="card-img-top imgProduct hoverImage" alt="Imagen Producto" />
+                <img src={imagen.url} className="card-img-top imgProduct defaultImage" alt="Imagen Producto" />
+                <img src={imagenSecundaria.url} className="card-img-top imgProduct hoverImage" alt="Imagen Producto" />
                 <div className="card-body">
                     <h5 className="card-title">{nombre}</h5>
                     <p>$ {precio}</p>

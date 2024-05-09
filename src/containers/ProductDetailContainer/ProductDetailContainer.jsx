@@ -7,7 +7,14 @@ import axios from 'axios';
 const ProductDetailContainer = () => {
 
     const {id} = useParams()
-    const [product, setProduct] = useState({})
+    const [product, setProduct] = useState({
+        imagen: {
+            url: ""
+        },
+        imagenSecundaria: {
+            url: ""
+        },
+    })
 
     useEffect(() => {
         const getProduct = async () => {
@@ -21,7 +28,6 @@ const ProductDetailContainer = () => {
 
         getProduct()
     }, [id]);
-
 
     return (
         <div className='divProductDetailContainer'>

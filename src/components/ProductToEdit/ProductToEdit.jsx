@@ -11,11 +11,11 @@ const ProductToEdit = ({product, categories}) => {
                 <div className='divImgCurrentProductContainer'>
                     <div>
                         <p>Imagen principal: </p>
-                        <img src={product.imagen} alt="Imagen principal" />
+                        <img src={product.imagen.url} alt="Imagen principal" />
                     </div>
                     <div>
                         <p>Imagen secundaria: </p>
-                        <img src={product.imagenSecundaria} alt="Imagen secundaria" />
+                        <img src={product.imagenSecundaria.url} alt="Imagen secundaria" />
                     </div>
                 </div>
                 <p><span>Nombre:</span> {product.nombre}</p>

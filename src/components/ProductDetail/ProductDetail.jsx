@@ -25,7 +25,7 @@ const ProductDetail = ({ product }) => {
     return (
         <section className='sectionProductDetail'>
             <div className='divImgProductDetail'>
-                <Carousel imagen1={product.imagen} imagen2={product.imagenSecundaria} />
+                <Carousel imagen1={product.imagen.url} imagen2={product.imagenSecundaria.url} />
             </div>
             <div className='divProductDetail'>
                 <h2>{product.nombre}</h2>
