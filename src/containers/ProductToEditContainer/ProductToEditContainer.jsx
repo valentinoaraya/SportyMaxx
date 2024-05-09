@@ -7,6 +7,7 @@ import axios from 'axios';
 const ProductToEditContainer = () => {
 
     const {id} = useParams()
+
     const [product, setProduct] = useState({
         imagen: {
             url: ""
@@ -15,8 +16,6 @@ const ProductToEditContainer = () => {
             url: ""
         }
     })
-    // Hago un useState aparta para las categorías porque React me tira un error
-    // cuando utilizo el array de categories desde el producto, por lo tanto lo paso aparte
     const [productCategories, setProductCategories ] = useState([])
 
     useEffect(() => {

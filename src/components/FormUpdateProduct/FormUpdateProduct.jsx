@@ -61,6 +61,24 @@ const FormUpdateProduct = () => {
         }
     }
 
+    const deleteProduct = async () => {
+
+        const userRole = await getCurrentUserRole()
+        console.log("Eliminando producto...")
+        try {
+            // Es importante quitar luego el req.body (o la información enviada) para el método delete, ya que está desaconsejado
+            const response = await axios.post(`http://localhost:4000/delete-product/${id}`, {userRole})
+            console.log(response)
+            if (response.status === 200) {
+                console.log("Producto eliminado con exito")
+            } else { 
+                console.log("Error al eliminar el producto")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div className='divFormUpdateProduct'>
             <form onSubmit={handleSubmit} className='formUpdateProduct'>
@@ -116,6 +134,8 @@ const FormUpdateProduct = () => {
                 </label>
                 <Button color={"btn-dark"} type={"submit"} >Actualizar producto</Button>  
             </form>
+            
+            <Button color={"btn-dark"} onFinish={deleteProduct} >Eliminar producto</Button>
         </div>
     );
 }
