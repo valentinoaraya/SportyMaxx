@@ -14,8 +14,17 @@ import LoginRegisterContainer from './containers/LoginRegisterContainer/LoginReg
 import FormAddProductContainer from './containers/FormAddProductContainer/FormAddProductContainer.jsx';
 import EditProductsContainer from './containers/EditProductsContainer/EditProductsContainer.jsx';
 import ProductToEditContainer from './containers/ProductToEditContainer/ProductToEditContainer.jsx';
+import { useEffect } from 'react';
 
 function App() {
+  // Usuario persistente
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      localStorage.removeItem("token")
+    }
+  }, [])
+
   return (
     <CartContextProvider>
       <div className="App">
