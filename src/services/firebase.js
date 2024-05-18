@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,9 +14,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Registrarse
-export const registerUser = async (email, password) => {
+export const registerUser = async (nombre, email, password) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(getAuth(app),email, password)
+        await updateProfile(userCredential.user, {displayName: nombre})
         const token = await userCredential.user.getIdToken() // Obtengo el token de Firebase Authentication
         localStorage.setItem("token", token) // Almaceno el token en el localStorage
         console.log("Usuario registrado correctamente")

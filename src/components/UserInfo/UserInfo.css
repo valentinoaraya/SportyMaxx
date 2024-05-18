@@ -1,23 +1,21 @@
 .divUserInfo{
-    height: 50vh;
+    width: 50%;
+    display: flex;
+    justify-content: center;  
 }
 
 .divIniciarSesionRegistrarse{
     display: flex;
     flex-direction: column;
-}
-
-.divIniciarSesionRegistrarse div {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-}
-
-.divIniciarSesionRegistrarse div div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 8rem;
+}
+
+.divIniciarSesionRegistrarse h2{
+    margin-bottom: 1rem;
+    font-weight: 800;
 }
 
 .linkButton{
@@ -27,8 +25,50 @@
 .divRol{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.divButtonsAdmin{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
 }
 
 .linkButtonAdmin{
-    margin-bottom: 1rem;
+    margin: 0 0.5rem;
+}
+
+.divButtons{
+    display: flex;
+    margin: 1rem;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.sectionDataUser{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 2rem;
+}
+
+.divData{
+    margin: 0.2rem;
+    padding: 1rem;
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+}
+
+.divDatosPersonales p span{
+    font-weight: 600;
+}
+
+.divIniciarSesionRegistrarseNotAccount{
+    height: 50vh;
 }

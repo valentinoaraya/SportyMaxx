@@ -18,10 +18,12 @@ const ProductToEdit = ({product, categories}) => {
                         <img src={product.imagenSecundaria.url} alt="Imagen secundaria" />
                     </div>
                 </div>
-                <p><span>Nombre:</span> {product.nombre}</p>
-                <p><span>Precio:</span> ${product.precio}</p>
-                <p><span>Stock:</span> {product.stock}</p>
-                <p><span>Categorias:</span> </p>
+                <div>
+                    <p><span>Nombre:</span> {product.nombre}</p>
+                    <p><span>Precio:</span> ${product.precio}</p>
+                    <p><span>Stock:</span> {product.stock}</p>
+                    <p><span>Categorias:</span> </p>
+                </div>
                 <ul>
                     {
                         categories.map((cat)=>{

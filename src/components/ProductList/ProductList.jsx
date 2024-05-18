@@ -6,13 +6,15 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import ProductsCardsLoading from '../ProductsCardsLoading/ProductsCardsLoading.jsx';
 
-const ProductList = () => {
+const ProductList = ({search}) => {
 
     const { categoria } = useParams();
     const [productosFiltrados, setProductosFiltrados] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
     const location = useLocation();
-    
+    //const [productosBuscados, setProductosBuscados] = useState([]);
+
     useEffect(() => {
 
         const getProducts = async () => {
@@ -24,18 +26,43 @@ const ProductList = () => {
                     response = await axios.get(`http://localhost:4000/?category=${categoria || ""}`)
                 }
                 setProductosFiltrados(response.data.data)
+                setAllProducts(response.data.data)
                 setIsLoading(false)
+                
             } catch (error) {
                 console.log(error)
             }
         }
-
         getProducts()
 
     }, [categoria, location.pathname])
 
+
+    const handleSearch = (e) => {
+        e.preventDefault()
+        if (e.target.value === "") {
+            setProductosFiltrados(allProducts)
+        } else {
+            const filteredProducts = allProducts.filter(product => product.nombre.toLowerCase().includes(e.target.value.toLowerCase()))
+            setProductosFiltrados(filteredProducts)
+        }
+        
+    }
+
     return (
         <div className='divListProducts'>
+            {
+                search && 
+                <p className='inputSearchContainer'>
+                    <input 
+                        className='inputSearch'
+                        onChange={handleSearch}
+                        type="text" 
+                        name="text"
+                        placeholder='Buscar producto...' 
+                    />
+                </p>
+            }
             {
                 isLoading ? <ProductsCardsLoading/> :
                 productosFiltrados.length === 0 ? 

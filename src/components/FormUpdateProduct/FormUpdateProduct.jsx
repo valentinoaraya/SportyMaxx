@@ -16,6 +16,7 @@ const FormUpdateProduct = () => {
     const [categories, setCategories] = useState([])
     const [imagen, setImagen] = useState(null)
     const [imagenSecundario, setImagenSecundaria] = useState(null)
+    const [disabledButton, setDisabledButton] = useState(false)
 
     const handleImagenChange = (e) => {
         const file = e.target.files[0];
@@ -29,6 +30,7 @@ const FormUpdateProduct = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setDisabledButton(true)
 
         const formData = new FormData();
         if (nombreProducto) formData.append("nombre", nombreProducto);
@@ -53,13 +55,17 @@ const FormUpdateProduct = () => {
             } else {
                 console.log("Error al enviar el formulario")
             }
-
+            
         } catch (error) {
             console.log("Error al enviar el formulario ",error)
         }
+
+        setDisabledButton(false)
     }
 
     const deleteProduct = async () => {
+
+        setDisabledButton(true)
 
         console.log("Eliminando producto...")
         try {
@@ -78,6 +84,8 @@ const FormUpdateProduct = () => {
         } catch (error) {
             console.log(error)
         }
+
+        setDisabledButton(false)
     }
 
     return (
@@ -133,10 +141,10 @@ const FormUpdateProduct = () => {
                         onChange={handleImagenSecundariaChange}
                     />
                 </label>
-                <Button color={"btn-dark"} type={"submit"} >Actualizar producto</Button>  
+                <Button color={"btn-dark"} type={"submit"} enabledDisabled={disabledButton}>Actualizar producto</Button>  
             </form>
             
-            <Button color={"btn-dark"} onFinish={deleteProduct} >Eliminar producto</Button>
+            <Button color={"btn-dark allwidth"} onFinish={deleteProduct} enabledDisabled={disabledButton}>Eliminar producto</Button>
         </div>
     );
 }

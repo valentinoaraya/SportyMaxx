@@ -11,6 +11,7 @@ const FormAddProduct = () => {
     const [categories, setCategories] = useState([])
     const [imagen, setImagen] = useState(null)
     const [imagenSecundario, setImagenSecundaria] = useState(null)
+    const [disabledButton, setDisabledButton] = useState(false)
 
     // Obtengo el token de usuario
     const token = localStorage.getItem("token")
@@ -27,6 +28,7 @@ const FormAddProduct = () => {
 
     const handleSumit = async (e) => {
         e.preventDefault();
+        setDisabledButton(true)
 
         const formData = new FormData();
         formData.append("nombre", nombreProducto);
@@ -54,6 +56,8 @@ const FormAddProduct = () => {
         } catch (error) {
             console.log("Error al enviar el formulario ",error)
         }
+        
+        setDisabledButton(false)
     }
 
     return (
@@ -112,7 +116,7 @@ const FormAddProduct = () => {
                         required
                     />
                 </label>
-                <Button color={"btn-dark"} type={"submit"} >Cargar producto</Button>  
+                <Button color={"btn-dark"} type={"submit"} enabledDisabled={disabledButton}>{disabledButton ? "Cargando producto..." : "Cargar producto"}</Button>  
             </form>
         </div>
     );

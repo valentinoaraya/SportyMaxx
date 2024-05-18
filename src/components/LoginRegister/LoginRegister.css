@@ -1,3 +1,11 @@
+.loginRegister{
+    height: 50vh;
+    margin-bottom: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .divLoginRegister{
     display: flex;
     flex-direction: column;
@@ -5,8 +13,10 @@
     align-items: center;
 }
 
-.loginRegister{
-    height: 50vh;
+
+.divLoginRegister h2{
+    margin-bottom: 1rem;
+    font-weight: 800;
 }
 
 .formLoginRegister{

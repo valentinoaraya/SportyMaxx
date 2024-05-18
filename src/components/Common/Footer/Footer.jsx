@@ -25,6 +25,10 @@ const Footer = () => {
                     titleSection2={"REDES SOCIALES"} arraySubtitles2={arraySocials} 
                 />
             </section>
+            <section className='sectionCopyright'>
+                <p>Copyright © 2024. Todos los derechos reservados. - Página diseñada y desarrollada por Valentino Araya.</p>
+                <p>Instagram: @tinoaraya</p>
+            </section>
         </footer>
     );
 }
