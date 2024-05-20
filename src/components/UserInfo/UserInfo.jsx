@@ -14,7 +14,7 @@ const UserInfo = () => {
             try {
                 const user = getCurrentUser();
                 setUser(user);
-                setRole( await getCurrentUserRole());
+                setRole(await getCurrentUserRole());
             } catch (error) {
                 console.log(error);
             }

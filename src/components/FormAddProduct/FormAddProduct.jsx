@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./FormAddProduct.css"
 import axios from 'axios';
 import Button from '../Button/Button.jsx';
+import { ToastContainer, toast } from 'react-toastify';
 
 const FormAddProduct = () => {
 
@@ -39,7 +40,6 @@ const FormAddProduct = () => {
         formData.append("imagenSecundaria",imagenSecundario);
 
         try {
-            console.log("Enviando formulario...")
             const resolve = await axios.post("http://localhost:4000/add-product", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
@@ -48,17 +48,28 @@ const FormAddProduct = () => {
             })
 
             if (resolve.status === 200) {
-                console.log("Formulario enviado con exito")
+                notifySucces()
             } else {
-                console.log("Error al enviar el formulario")
+                notifyError()
             }
 
         } catch (error) {
+            notifyError()
             console.log("Error al enviar el formulario ",error)
         }
         
         setDisabledButton(false)
     }
+
+    const notifySucces = () => toast.success("Producto cargado con exito.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
+
+    const notifyError = () => toast.error("Error al cargar el producto.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
 
     return (
         <div className='divFormAddProduct'>
@@ -118,6 +129,9 @@ const FormAddProduct = () => {
                 </label>
                 <Button color={"btn-dark"} type={"submit"} enabledDisabled={disabledButton}>{disabledButton ? "Cargando producto..." : "Cargar producto"}</Button>  
             </form>
+            <ToastContainer
+                autoClose = {false}
+            />
         </div>
     );
 }

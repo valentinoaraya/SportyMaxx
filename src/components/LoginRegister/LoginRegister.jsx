@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { signInUser, registerUser } from '../../services/firebase.js';
 import Button from "../Button/Button.jsx";
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const LoginRegister = () => {
 
@@ -28,9 +29,14 @@ const LoginRegister = () => {
             navigate("/user-info")
         } catch (error) {
             setDisabledButton(false)
-            console.log(error)
+            notify()
         }
     }
+
+    const notify = () => toast.error(action === "login" ? "Error al iniciar sesión" : "Error al registrar usuario", {
+        theme: "colored",
+        pauseOnHover: false
+    })
 
     return (
         <div className='loginRegister'>
@@ -67,6 +73,9 @@ const LoginRegister = () => {
                     </label>
                     <Button color={"btn-dark"} enabledDisabled={disabledButton} type={"submit"} >{action === "login" ? "Iniciar Sesión" : "Registrarse" }</Button>
                 </form>
+                <ToastContainer
+                    autoClose={2000}
+                />
             </div>
         </div>
     );

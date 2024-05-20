@@ -3,6 +3,7 @@ import './FormUpdateProduct.css'
 import Button from '../Button/Button.jsx';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const FormUpdateProduct = () => {
 
@@ -31,6 +32,7 @@ const FormUpdateProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDisabledButton(true)
+        const action = "update-product"
 
         const formData = new FormData();
         if (nombreProducto) formData.append("nombre", nombreProducto);
@@ -40,32 +42,37 @@ const FormUpdateProduct = () => {
         if (imagen) formData.append("imagen",imagen);
         if (imagenSecundario) formData.append("imagenSecundaria",imagenSecundario);
 
-        try {
-            console.log("Enviando formulario...")
-            console.log(formData)
-            const resolve = await axios.put(`http://localhost:4000/edit-product/${id}`, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    Authorization: `Bearer ${token}`
+        if (!nombreProducto && !imagen && !imagenSecundario && categories.length === 0 && !stock && !precio) {
+            console.log("No hay nada que actualizar")
+        } else {
+            try {
+                console.log("Enviando formulario...")
+                console.log(formData)
+                const resolve = await axios.put(`http://localhost:4000/edit-product/${id}`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+    
+                if (resolve.status === 200) {
+                    notifySucces(action)
+                } else {
+                    notifyError(action)
                 }
-            })
-
-            if (resolve.status === 200) {
-                console.log("Formulario enviado con exito")
-            } else {
-                console.log("Error al enviar el formulario")
+                
+            } catch (error) {
+                notifyError(action)
             }
-            
-        } catch (error) {
-            console.log("Error al enviar el formulario ",error)
         }
-
         setDisabledButton(false)
     }
 
     const deleteProduct = async () => {
 
         setDisabledButton(true)
+
+        const action = "delete-product"
 
         console.log("Eliminando producto...")
         try {
@@ -77,16 +84,26 @@ const FormUpdateProduct = () => {
             })
             console.log(response)
             if (response.status === 200) {
-                console.log("Producto eliminado con exito")
+                notifySucces(action)
             } else { 
-                console.log("Error al eliminar el producto")
+                notifyError(action)
             }
         } catch (error) {
-            console.log(error)
+            notifyError(action)
         }
 
         setDisabledButton(false)
     }
+
+    const notifySucces = (action) => toast.success(action === "delete-product" ? "Producto eliminado con exito." : "Producto actualizado con exito.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
+
+    const notifyError = (action) => toast.error(action === "delete-product" ? "Error al eliminar el producto." : "Error al actualizar el producto.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
 
     return (
         <div className='divFormUpdateProduct'>
@@ -145,6 +162,9 @@ const FormUpdateProduct = () => {
             </form>
             
             <Button color={"btn-dark allwidth"} onFinish={deleteProduct} enabledDisabled={disabledButton}>Eliminar producto</Button>
+            <ToastContainer
+                autoClose = {false}
+            />
         </div>
     );
 }

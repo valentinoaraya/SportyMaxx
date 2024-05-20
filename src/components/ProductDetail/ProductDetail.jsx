@@ -1,13 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import "./ProductDetail.css"
 import Carousel from '../Carousel/Carousel.jsx';
 import Button from '../Button/Button.jsx';
 import { cartContext } from '../../context/CartContext.jsx';
 import { ToastContainer, toast } from 'react-toastify';
+import { getCurrentUserRole } from '../../services/firebase.js';
+import { Link } from 'react-router-dom';
 
 const ProductDetail = ({ product }) => {
 
     const { addToCart, cart } = useContext(cartContext)
+    const [role, setRole] = useState(null)
+
+    useEffect(() => {
+        const checkUser = async () => {
+            try {
+                setRole(await getCurrentUserRole())
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        checkUser()
+    }, [])
 
     const notify = () => toast.success("Agregado al carrito.", {
         theme: "colored",
@@ -63,6 +77,12 @@ const ProductDetail = ({ product }) => {
                     >
                         Agregar al carrito
                     </Button>
+                    {
+                        role === "admin" &&
+                        <Link className='linkEdit' to={`/edit-product/${product.id}`}>
+                            <Button color={"btn-dark allwidth"}>Editar producto</Button>
+                        </Link>
+                    }
                 </div>
             </div>
             <ToastContainer
