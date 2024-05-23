@@ -1,0 +1,60 @@
+.divMediosDePagoContainer{
+    width: 60rem;
+    margin-right: 1rem;
+}
+
+.divInfoUser{
+    padding: 1.5rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+}
+
+.divInfoUser p{
+    margin: 1rem 0 0 0;
+}
+
+
+.medioDePago{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    height: 5.5rem;
+}
+
+.medioDePago p{
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.medioDePago div{
+    display: flex;
+    align-items: center;
+}
+
+.iconMDP{
+    margin-right: 1rem;
+}
+
+.iconEfectivo{
+    font-size: 1.2rem;
+}
+
+.iconMercadoPago{
+    width: 4.5rem;
+    height: auto;
+}
+
+.MDPmercadoPago{
+    padding: 0 1.5rem;
+}
+
+.linkMDP{
+    text-decoration: none;
+    color: black;
+}

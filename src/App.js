@@ -14,6 +14,7 @@ import LoginRegisterContainer from './containers/LoginRegisterContainer/LoginReg
 import FormAddProductContainer from './containers/FormAddProductContainer/FormAddProductContainer.jsx';
 import EditProductsContainer from './containers/EditProductsContainer/EditProductsContainer.jsx';
 import ProductToEditContainer from './containers/ProductToEditContainer/ProductToEditContainer.jsx';
+import CheckoutContainer from './containers/CheckoutContainer/CheckoutContainer.jsx';
 import { useEffect } from 'react';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
             <Route path='/add-product' element={<FormAddProductContainer /> }></Route>
             <Route path='/edit-product' element={<EditProductsContainer /> }></Route>
             <Route path='/edit-product/:id' element={<ProductToEditContainer/> }></Route>
+            <Route path='/checkout' element={<CheckoutContainer /> }></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -3,6 +3,7 @@ import "./CartView.css"
 import { cartContext } from '../../context/CartContext.jsx';
 import ProductInCart from './ProductInCart/ProductInCart.jsx';
 import Button from '../Button/Button.jsx';
+import { Link } from 'react-router-dom';
 
 const CartView = () => {
 
@@ -58,11 +59,28 @@ const CartView = () => {
                             </Button>
                         </div>
                         <div className='botonCart boton2'>
-                            <Button color={"btn-dark allwidth"}
-                                enabledDisabled={cart.length === 0 ? true : false}
-                            >
-                                Finalizar compra
-                            </Button>
+                            
+                            {
+                                cart.length !== 0 ?
+                                <Link to="/checkout">
+                                    <div data-bs-dismiss="offcanvas" >
+                                        <Button 
+                                            color={"btn-dark allwidth"}
+                                            enabledDisabled={cart.length === 0 ? true : false}
+                                        >
+                                            Finalizar compra
+                                        </Button>
+                                    </div>
+                                </Link>
+                                :
+                                <Button 
+                                    color={"btn-dark allwidth"}
+                                    enabledDisabled={cart.length === 0 ? true : false}
+                                >
+                                    Finalizar compra
+                                </Button>
+                            }
+
                         </div>
                     </div>
                 </div>
