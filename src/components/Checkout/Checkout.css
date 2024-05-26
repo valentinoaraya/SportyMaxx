@@ -4,8 +4,12 @@
     width: 100%;
 }
 
-.dataCartContainer{
+.data-info-container{
     width: 30rem;
+}
+
+.dataCartContainer{
+    width: 100%;
     height: min-content;
     border: 1px solid #d9d9d9;
     padding: 1rem;
@@ -64,6 +68,13 @@ ul li{
     font-weight: bolder;
 }
 
+.importantInfo{
+    padding: 1rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
 @media screen and (max-width: 1000px) {
     .resaltName{
         font-size: 1rem;
@@ -76,7 +87,7 @@ ul li{
         flex-flow: column-reverse;
     }
 
-    .dataCartContainer{
+    .data-info-container{
         width: 100%;
     }
 }

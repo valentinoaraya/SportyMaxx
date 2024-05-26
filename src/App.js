@@ -15,16 +15,8 @@ import FormAddProductContainer from './containers/FormAddProductContainer/FormAd
 import EditProductsContainer from './containers/EditProductsContainer/EditProductsContainer.jsx';
 import ProductToEditContainer from './containers/ProductToEditContainer/ProductToEditContainer.jsx';
 import CheckoutContainer from './containers/CheckoutContainer/CheckoutContainer.jsx';
-import { useEffect } from 'react';
 
 function App() {
-  // Usuario persistente
-  useEffect(() => {
-    const token = localStorage.getItem("token")
-    if (token) {
-      localStorage.removeItem("token")
-    }
-  }, [])
 
   return (
     <CartContextProvider>

@@ -31,27 +31,35 @@ const Checkout = () => {
                 :
                 <CheckoutUserForm/>
             }           
-            <div className='dataCartContainer'>
-                <div>
-                    <ul>
-                        {
-                            cart.map((prod)=>{
-                                return <li key={prod.id}>
-                                    <div className='divInfoProduct'>
-                                        <div>
-                                            <img src={prod.imagen.url} alt="Imagen producto" className='imgCheckoutData' />
-                                            <p><span className='resaltName'>{prod.nombre}</span> x{prod.count}</p>
+            <div className='data-info-container'>
+                <div className='dataCartContainer'>
+                    <div>
+                        <ul>
+                            {
+                                cart.map((prod)=>{
+                                    return <li key={prod.id}>
+                                        <div className='divInfoProduct'>
+                                            <div>
+                                                <img src={prod.imagen.url} alt="Imagen producto" className='imgCheckoutData' />
+                                                <p><span className='resaltName'>{prod.nombre}</span> x{prod.count}</p>
+                                            </div>
+                                            <p>${prod.precio*prod.count}</p>
                                         </div>
-                                        <p>${prod.precio*prod.count}</p>
-                                    </div>
-                                </li>
-                            })
-                        }
-                    </ul>
+                                    </li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                    <div className='divTotalPrice'>
+                        <p className='titleTotal'>TOTAL:</p>
+                        <p>${totalPrice()}</p>
+                    </div>
                 </div>
-                <div className='divTotalPrice'>
-                    <p className='titleTotal'>TOTAL:</p>
-                    <p>${totalPrice()}</p>
+                <div className='importantInfo'>
+                    <p><span>Envío a convenir.</span></p>
+                    <p>El envío de los productos será acordado mediante Whatsapp.</p>
+                    <p>En el siguiente paso se le solicitará el envío del comprobante de pago a nuestro Whatsapp, donde acordaremos la dirección y el medio de entrega del envío.</p>
+                    <p><span>¡Gracias por confiar en nosotros!</span></p>
                 </div>
             </div>
         </div>

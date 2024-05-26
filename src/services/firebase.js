@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, setPersistence, browserLocalPersistence } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, setPersistence, browserLocalPersistence, onAuthStateChanged } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -20,6 +20,22 @@ setPersistence(getAuth(app), browserLocalPersistence)
 })
 .catch((error) => {
     console.log(error)
+})
+
+// Cambios de autenticación y tokens
+onAuthStateChanged(getAuth(app), async (user) => {
+    if (user) {
+        try{
+            const token = await user.getIdToken();
+            localStorage.setItem("token", token);
+            console.log("Token actualizado")
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        localStorage.removeItem("token")
+        console.log("Usuario no autenticado, token eliminado")
+    }
 })
 
 // Registrarse

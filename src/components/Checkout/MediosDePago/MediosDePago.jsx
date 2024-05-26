@@ -10,6 +10,8 @@ const MediosDePago = ({user}) => {
                 <h2>Datos del comprador:</h2>
                 <p><span>Nombre:</span> {user.displayName}</p>
                 <p><span>Correo:</span> {user.email}</p>
+                <p><span>Teléfono:</span> - </p>
+                <p><span>Dirección:</span> - </p>
             </div>
             <div className='divMediosDePago'>
                 <h2>Medios de pago:</h2>
