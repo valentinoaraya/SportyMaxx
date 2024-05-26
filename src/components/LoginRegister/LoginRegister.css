@@ -32,3 +32,16 @@ input {
 label{
     margin-bottom: 1rem;
 }
+
+@media screen and (max-width: 570px) {
+    .formLoginRegister label{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .formLoginRegister{
+        padding: 1rem 0; 
+    }
+}

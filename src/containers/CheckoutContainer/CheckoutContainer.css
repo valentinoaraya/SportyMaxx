@@ -2,3 +2,15 @@
     margin: 10rem 0;
     padding: 0 5rem;
 }
+
+@media screen and (max-width: 1000px) {
+    .divCheckoutContainer{
+        padding: 0 1.2rem;
+    }   
+}
+
+@media screen and (max-width: 750px) {
+    .divCheckoutContainer{
+        margin: 5rem 0;
+    }   
+}

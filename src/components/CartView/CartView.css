@@ -79,3 +79,13 @@
         height: 1.2rem;
     }
 }
+
+@media  screen and (max-width: 520px) {
+    .totalProducts-container{
+        display: none;
+    }
+
+    .bi-mobile{
+        margin-left: 0.8rem;
+    }
+}

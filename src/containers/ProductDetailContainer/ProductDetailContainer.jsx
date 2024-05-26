@@ -15,12 +15,14 @@ const ProductDetailContainer = () => {
             url: ""
         },
     })
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const getProduct = async () => {
             try {
                 const response = await axios.get(`http://localhost:4000/item/${id}`)
                 setProduct(response.data.data)
+                setIsLoading(false)
             } catch (error) {
                 console.log(error)
             }
@@ -31,7 +33,14 @@ const ProductDetailContainer = () => {
 
     return (
         <div className='divProductDetailContainer'>
-            <ProductDetail product={product}></ProductDetail>
+            {
+                isLoading ? 
+                <div className='cargandoProductoContainer'>
+                    <h1>Cargando producto...</h1>
+                </div>
+                : 
+                <ProductDetail product={product} />
+            }
         </div>
     );
 }

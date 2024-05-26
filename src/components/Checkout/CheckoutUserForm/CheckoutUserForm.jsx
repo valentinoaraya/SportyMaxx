@@ -23,7 +23,7 @@ const CheckoutUserForm = () => {
 
     return (
 
-        <div>
+        <>
             {
                 user ?
                 <MediosDePago user={user}/>
@@ -47,7 +47,7 @@ const CheckoutUserForm = () => {
                     </form>
                 </div>   
             }
-        </div>
+        </>
         
     );
 }

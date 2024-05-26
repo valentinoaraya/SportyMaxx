@@ -52,19 +52,19 @@ const ProductDetail = ({ product }) => {
                     <h3 className='seleccionarTalle'>Seleccionar Talle</h3>
                     <div className='botonesSeleccionarTalle'>
                         <div>
-                            <Button color={"btn-outline-dark"}>XXL</Button>
+                            <Button isPressed={true} color={"btn-outline-dark"}>XXL</Button>
                         </div>
                         <div>
-                            <Button color={"btn-outline-dark"}>XL</Button>
+                            <Button isPressed={true} color={"btn-outline-dark"}>XL</Button>
                         </div>
                         <div>
-                            <Button color={"btn-outline-dark"}>L</Button>
+                            <Button isPressed={true} color={"btn-outline-dark"}>L</Button>
                         </div>
                         <div>
-                            <Button color={"btn-outline-dark"}>M</Button>
+                            <Button isPressed={true} color={"btn-outline-dark"}>M</Button>
                         </div>
                         <div>
-                            <Button color={"btn-outline-dark"}>S</Button>
+                            <Button isPressed={true} color={"btn-outline-dark"}>S</Button>
                         </div>
                     </div>
                     <h4>Guía de talles</h4>

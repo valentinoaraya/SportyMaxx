@@ -27,7 +27,7 @@ const ProductToEdit = ({product, categories}) => {
                 <ul>
                     {
                         categories.map((cat)=>{
-                            return <li key={cat}>{cat}</li>
+                            return <li className='liCategories' key={cat}>{cat.toUpperCase().replace('-', ' ')}</li>
                         })
                     }
                 </ul>

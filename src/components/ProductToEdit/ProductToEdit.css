@@ -35,3 +35,23 @@ span{
     align-items: center;
     width: 50%;
 }
+
+.liCategories{
+    list-style: disc;
+}
+
+@media screen and (max-width: 900px) {
+    .divProductToEditContainer{
+        flex-direction: column;
+    }
+    .divProductToEditContainer .divInfoCurrentProduct, .divProductToEditContainer .formEdit{
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .divImgCurrentProductContainer div img{
+        width: 8rem;
+    }
+}

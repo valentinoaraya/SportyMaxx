@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './FormUpdateProduct.css'
 import Button from '../Button/Button.jsx';
 import axios from 'axios';
@@ -10,7 +10,7 @@ const FormUpdateProduct = () => {
     const { id } = useParams();
 
     const token = localStorage.getItem("token")
-    
+
     const [nombreProducto, setNombreProducto] = useState("")
     const [precio, setPrecio] = useState("")
     const [stock, setStock] = useState("")
@@ -18,6 +18,8 @@ const FormUpdateProduct = () => {
     const [imagen, setImagen] = useState(null)
     const [imagenSecundario, setImagenSecundaria] = useState(null)
     const [disabledButton, setDisabledButton] = useState(false)
+
+    const cats = ["DESTACADO", "REMERAS", "BUZOS", "CAMISAS", "PANTALONES", "BERMUDAS", "MALLAS", "ACCESORIOS", "VCP", "HARVEY WILLYS", "VIEJASCUL", "Manga corta", "Manga larga", "Chombas", "Con capucha", "Sin capucha", "Jeans", "Algodon", "Gabardina", "Boxers", "Billeteras", "Gorros", "Pilusos", "Gorras", "Australianos", "Medias",]
 
     const handleImagenChange = (e) => {
         const file = e.target.files[0];
@@ -37,10 +39,10 @@ const FormUpdateProduct = () => {
         const formData = new FormData();
         if (nombreProducto) formData.append("nombre", nombreProducto);
         if (precio) formData.append("precio", precio);
-        if (stock) formData.append("stock",stock);
-        if (categories.length !== 0) formData.append("categories",categories);
-        if (imagen) formData.append("imagen",imagen);
-        if (imagenSecundario) formData.append("imagenSecundaria",imagenSecundario);
+        if (stock) formData.append("stock", stock);
+        if (categories.length !== 0) formData.append("categories", categories);
+        if (imagen) formData.append("imagen", imagen);
+        if (imagenSecundario) formData.append("imagenSecundaria", imagenSecundario);
 
         if (!nombreProducto && !imagen && !imagenSecundario && categories.length === 0 && !stock && !precio) {
             console.log("No hay nada que actualizar")
@@ -54,13 +56,13 @@ const FormUpdateProduct = () => {
                         Authorization: `Bearer ${token}`
                     }
                 })
-    
+
                 if (resolve.status === 200) {
                     notifySucces(action)
                 } else {
                     notifyError(action)
                 }
-                
+
             } catch (error) {
                 notifyError(action)
             }
@@ -85,7 +87,7 @@ const FormUpdateProduct = () => {
             console.log(response)
             if (response.status === 200) {
                 notifySucces(action)
-            } else { 
+            } else {
                 notifyError(action)
             }
         } catch (error) {
@@ -110,60 +112,79 @@ const FormUpdateProduct = () => {
             <form onSubmit={handleSubmit} className='formUpdateProduct'>
                 <label>
                     <span>Nombre:</span>
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         placeholder={"Nuevo nombre del producto..."}
-                        value={nombreProducto} 
+                        value={nombreProducto}
                         onChange={(e) => setNombreProducto(e.target.value)}
                     />
                 </label>
                 <label>
                     <span>Precio:</span>
-                    <input 
-                        type="number" 
-                        placeholder={"Nuevo precio..."} 
+                    <input
+                        type="number"
+                        placeholder={"Nuevo precio..."}
                         value={precio}
                         onChange={(e) => setPrecio(e.target.value)}
                     />
                 </label>
                 <label>
                     <span>Stock:</span>
-                    <input 
-                        type="number" 
-                        placeholder={stock} 
+                    <input
+                        type="number"
+                        placeholder={stock}
                         value={stock}
                         onChange={(e) => setStock(e.target.value)}
                     />
                 </label>
-                <label>
-                    <span>Categorias:</span>
-                    <input 
-                        type="text" 
-                        placeholder={categories} 
-                        value={categories}
-                        onChange={(e) => setCategories(e.target.value.split(", "))}
-                    />
-                </label>
+                <div>
+                    <label>
+                        <span>Categorías: </span>
+                    </label>
+                    <div>
+                        {
+                            cats.map((cat, index) => (
+                                <div key={index} className="form-check form-check-inline">
+                                    <input
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        value={cat}
+                                        name={cat}
+                                        checked={categories.includes(cat.toLowerCase().replace(/\s/g, "-"))}
+                                        onChange={(e) => {
+                                            if (e.target.checked) {
+                                                setCategories([...categories, e.target.value.toLowerCase().replace(/\s/g, "-")])
+                                            } else {
+                                                setCategories(categories.filter(c => c !== e.target.value.toLowerCase().replace(/\s/g, "-")))
+                                            }
+                                        }}
+                                    />
+                                    <label className="form-check-label" htmlFor={cat}>{index <= 7 ? <span>{cat}</span> : cat}</label>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
                 <label>
                     <span>Imagen principal:</span>
-                    <input 
-                        type="file" 
+                    <input
+                        type="file"
                         onChange={handleImagenChange}
                     />
                 </label>
                 <label>
                     <span>Imagen secundaria:</span>
-                    <input 
-                        type="file" 
+                    <input
+                        type="file"
                         onChange={handleImagenSecundariaChange}
                     />
                 </label>
-                <Button color={"btn-dark"} type={"submit"} enabledDisabled={disabledButton}>Actualizar producto</Button>  
+                <Button color={"btn-dark"} type={"submit"} enabledDisabled={disabledButton}>Actualizar producto</Button>
             </form>
-            
+
             <Button color={"btn-dark allwidth"} onFinish={deleteProduct} enabledDisabled={disabledButton}>Eliminar producto</Button>
             <ToastContainer
-                autoClose = {false}
+                autoClose={false}
             />
         </div>
     );

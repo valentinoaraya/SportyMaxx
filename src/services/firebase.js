@@ -1,5 +1,5 @@
-import {initializeApp} from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, setPersistence, browserLocalPersistence } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -13,13 +13,20 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+// Persistencia en las sesiones
+setPersistence(getAuth(app), browserLocalPersistence)
+.then(() => {
+    console.log("Persistencia establecida")
+})
+.catch((error) => {
+    console.log(error)
+})
+
 // Registrarse
 export const registerUser = async (nombre, email, password) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(getAuth(app),email, password)
         await updateProfile(userCredential.user, {displayName: nombre})
-        const token = await userCredential.user.getIdToken() // Obtengo el token de Firebase Authentication
-        localStorage.setItem("token", token) // Almaceno el token en el localStorage
         console.log("Usuario registrado correctamente")
         return userCredential.user;
     } catch (error) {
@@ -32,8 +39,6 @@ export const registerUser = async (nombre, email, password) => {
 export const signInUser = async (email, password) => {
     try {
         const userCredential = await signInWithEmailAndPassword(getAuth(app),email, password)
-        const token = await userCredential.user.getIdToken() // Obtengo el token de Firebase Authentication
-        localStorage.setItem("token", token) // Almaceno el token en el localStorage
         console.log("Sesion iniciada correctamente")
         return userCredential.user
     } catch (error) {

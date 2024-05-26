@@ -63,3 +63,20 @@ ul li{
     font-size: 1.5rem;
     font-weight: bolder;
 }
+
+@media screen and (max-width: 1000px) {
+    .resaltName{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .divCheckout{
+        flex-direction: column;
+        flex-flow: column-reverse;
+    }
+
+    .dataCartContainer{
+        width: 100%;
+    }
+}

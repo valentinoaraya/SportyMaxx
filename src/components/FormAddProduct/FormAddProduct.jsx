@@ -14,6 +14,8 @@ const FormAddProduct = () => {
     const [imagenSecundario, setImagenSecundaria] = useState(null)
     const [disabledButton, setDisabledButton] = useState(false)
 
+    const cats = ["DESTACADO", "REMERAS", "BUZOS", "CAMISAS", "PANTALONES", "BERMUDAS", "MALLAS", "ACCESORIOS", "VCP", "HARVEY WILLYS", "VIEJASCUL", "Manga corta", "Manga larga", "Chombas", "Con capucha", "Sin capucha", "Jeans", "Algodon", "Gabardina", "Boxers", "Billeteras", "Gorros", "Pilusos", "Gorras", "Australianos", "Medias",]
+
     // Obtengo el token de usuario
     const token = localStorage.getItem("token")
 
@@ -102,15 +104,34 @@ const FormAddProduct = () => {
                         required
                     />
                 </label>
-                <label>
-                    Categorías del producto:
-                    <input 
-                        type="text" 
-                        value={categories}
-                        onChange={(e) => setCategories(e.target.value.split(", "))}
-                        required
-                    />
-                </label>
+                <div className='divCatsContainer'>
+                    <label>
+                        Categorías del producto:
+                    </label>
+                    <div>
+                        {
+                            cats.map((cat, index) => (
+                                <div key={index} className="form-check form-check-inline">
+                                    <input
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        value={cat}
+                                        name={cat}
+                                        checked={categories.includes(cat.toLowerCase().replace(/\s/g, "-"))}
+                                        onChange={(e) => {
+                                            if (e.target.checked) {
+                                                setCategories([...categories, e.target.value.toLowerCase().replace(/\s/g, "-")])
+                                            } else {
+                                                setCategories(categories.filter(c => c !== e.target.value.toLowerCase().replace(/\s/g, "-")))
+                                            }
+                                        }}
+                                    />
+                                    <label className="form-check-label" htmlFor={cat}>{index <= 7 ? <span>{cat}</span> : cat}</label>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
                 <label>
                     Imagen principal del producto:
                     <input 

@@ -32,4 +32,8 @@
     margin-bottom: 1rem;
 }
 
-
+@media screen and (max-width: 750px) {
+    .checkoutUserFormContainer{
+        width: 100%;
+    }
+}
