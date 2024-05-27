@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { getCurrentUser, signOutUser, getCurrentUserRole } from "../../services/firebase.js";
+import { getCurrentUser, signOutUser, getCurrentUserRole, getCurrentUserFirestore } from "../../services/firebase.js";
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button.jsx';
 import "./UserInfo.css";
@@ -8,13 +8,15 @@ const UserInfo = () => {
 
     const [user, setUser] = useState(null);
     const [role, setRole] = useState(null);
-
+    const [dataUser, setDataUser] = useState({});
+    
     useEffect(() => {
         const checkUser = async () => {
             try {
                 const user = getCurrentUser();
                 setUser(user);
                 setRole(await getCurrentUserRole());
+                setDataUser(await getCurrentUserFirestore(user));
             } catch (error) {
                 console.log(error);
             }
@@ -51,17 +53,22 @@ const UserInfo = () => {
                     <section className='sectionDataUser'>
                         <div className='divData divDatosPersonales'>
                             <h3>Datos personales:</h3>
-                            <p><span>Nombre:</span> {user.displayName}</p>
-                            <p><span>Correo:</span> {user.email}</p>
-                            <p><span>Teléfono:</span> -</p>
-                            <p><span>Dirección:</span> -</p>
+                            <p><span>Nombre:</span> {dataUser.nombre}</p>
+                            <p><span>Correo:</span> {dataUser.email}</p>
+                            <p><span>Teléfono:</span> {dataUser.telefono}</p>
+                            <p><span>Dirección:</span> {dataUser.direccion}</p>
                         </div>
                         <div className='divData divMisCompras'>
                             <h3>Mis compras:</h3>
                             <p>No hay compras aún</p>
                         </div>
                     </section>
-                    <Button color={"btn-dark"} onFinish={handleSignOut} >Cerrar Sesión</Button>
+                    <div className='divButtons'>
+                        <Link to={"/edit-profile/"}>
+                            <Button color={"btn-dark"}>Editar perfil</Button>
+                        </Link>
+                        <Button color={"btn-dark"} onFinish={handleSignOut} >Cerrar Sesión</Button>
+                    </div>
                 </div>
                 :
                 <div className='divIniciarSesionRegistrarse divIniciarSesionRegistrarseNotAccount'>

@@ -13,6 +13,8 @@ const LoginRegister = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [nombre, setNombre] = useState("")
+    const [telefono, setTelefono] = useState("")
+    const [direccion, setDireccion] = useState("")
     const [disabledButton, setDisabledButton] = useState(false)
 
     const navigate = useNavigate("/user-info")
@@ -24,7 +26,7 @@ const LoginRegister = () => {
             if (action === "login") {
                 await signInUser(email, password)
             } else {
-                await registerUser(nombre, email, password)
+                await registerUser(nombre, telefono, direccion, email, password)
             }
             navigate("/user-info")
         } catch (error) {
@@ -45,14 +47,32 @@ const LoginRegister = () => {
                 <form onSubmit={handleSubmit} className="formLoginRegister">
                     {
                         action === "register" &&
-                        <label>
-                            Nombre y apellido:
-                            <input type="text" name="text" id="text" placeholder="Nombre y apellido"
-                                value={nombre}
-                                onChange={(e) => setNombre(e.target.value)} 
-                                required
-                            />
-                        </label>
+                        <div className='divInputsRegister'>
+                            <label>
+                                Nombre y apellido:
+                                <input type="text" name="text" id="text" placeholder="Nombre y apellido"
+                                    value={nombre}
+                                    onChange={(e) => setNombre(e.target.value)} 
+                                    required
+                                />
+                            </label>
+                            <label>
+                                Telefono:
+                                <input type="text" name="text" id="text" placeholder="Telefono"
+                                    value={telefono}
+                                    onChange={(e) => setTelefono(e.target.value)} 
+                                    required
+                                />
+                            </label>
+                            <label>
+                                Dirección:
+                                <input type="text" name="text" id="text" placeholder="Direccion"
+                                    value={direccion}
+                                    onChange={(e) => setDireccion(e.target.value)} 
+                                    required
+                                />
+                            </label>
+                        </div>
                     }
 
                     <label>

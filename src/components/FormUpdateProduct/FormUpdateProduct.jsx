@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './FormUpdateProduct.css'
 import Button from '../Button/Button.jsx';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
 const FormUpdateProduct = () => {
@@ -10,6 +10,8 @@ const FormUpdateProduct = () => {
     const { id } = useParams();
 
     const token = localStorage.getItem("token")
+
+    const navigate = useNavigate("/")
 
     const [nombreProducto, setNombreProducto] = useState("")
     const [precio, setPrecio] = useState("")
@@ -21,6 +23,16 @@ const FormUpdateProduct = () => {
 
     const cats = ["DESTACADO", "REMERAS", "BUZOS", "CAMISAS", "PANTALONES", "BERMUDAS", "MALLAS", "ACCESORIOS", "VCP", "HARVEY WILLYS", "VIEJASCUL", "Manga corta", "Manga larga", "Chombas", "Con capucha", "Sin capucha", "Jeans", "Algodon", "Gabardina", "Boxers", "Billeteras", "Gorros", "Pilusos", "Gorras", "Australianos", "Medias",]
 
+    const notifySucces = (action) => toast.success(action === "delete-product" ? "Producto eliminado con exito." : "Producto actualizado con exito.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
+
+    const notifyError = (action) => toast.error(action === "delete-product" ? "Error al eliminar el producto." : "Error al actualizar el producto.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
+    
     const handleImagenChange = (e) => {
         const file = e.target.files[0];
         setImagen(file);
@@ -59,6 +71,10 @@ const FormUpdateProduct = () => {
 
                 if (resolve.status === 200) {
                     notifySucces(action)
+                    const idTimeout = setTimeout(() => {
+                        navigate("/")
+                        clearTimeout(idTimeout)
+                    }, 1500)
                 } else {
                     notifyError(action)
                 }
@@ -87,6 +103,10 @@ const FormUpdateProduct = () => {
             console.log(response)
             if (response.status === 200) {
                 notifySucces(action)
+                const idTimeout = setTimeout(() => {
+                    navigate("/")
+                    clearTimeout(idTimeout)
+                }, 1500)
             } else {
                 notifyError(action)
             }
@@ -96,16 +116,6 @@ const FormUpdateProduct = () => {
 
         setDisabledButton(false)
     }
-
-    const notifySucces = (action) => toast.success(action === "delete-product" ? "Producto eliminado con exito." : "Producto actualizado con exito.", {
-        theme: "colored",
-        pauseOnHover: false
-    })
-
-    const notifyError = (action) => toast.error(action === "delete-product" ? "Error al eliminar el producto." : "Error al actualizar el producto.", {
-        theme: "colored",
-        pauseOnHover: false
-    })
 
     return (
         <div className='divFormUpdateProduct'>

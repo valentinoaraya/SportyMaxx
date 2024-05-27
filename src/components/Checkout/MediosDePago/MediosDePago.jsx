@@ -8,10 +8,10 @@ const MediosDePago = ({user}) => {
         <div className='divMediosDePagoContainer'>
             <div className='divInfoUser'>
                 <h2>Datos del comprador:</h2>
-                <p><span>Nombre:</span> {user.displayName}</p>
+                <p><span>Nombre:</span> {user.nombre}</p>
                 <p><span>Correo:</span> {user.email}</p>
-                <p><span>Teléfono:</span> - </p>
-                <p><span>Dirección:</span> - </p>
+                <p><span>Teléfono:</span> {user.telefono} </p>
+                <p><span>Dirección:</span> {user.direccion} </p>
             </div>
             <div className='divMediosDePago'>
                 <h2>Medios de pago:</h2>

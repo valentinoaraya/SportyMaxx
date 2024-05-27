@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import './Checkout.css'
 import { cartContext } from '../../context/CartContext.jsx';
-import { getCurrentUser } from '../../services/firebase.js';
+import { getCurrentUser, getCurrentUserFirestore } from '../../services/firebase.js';
 import CheckoutUserForm from './CheckoutUserForm/CheckoutUserForm.jsx';
 import MediosDePago from './MediosDePago/MediosDePago.jsx';
 
@@ -9,6 +9,7 @@ const Checkout = () => {
 
     // Debo verificar si hay un usuario, caso contrario pedir informaciónd
     const [user, setUser] = useState(null)
+    const [dataUser, setDataUser] = useState({})
     const { cart, totalPrice } = useContext(cartContext);
 
     useEffect(()=>{
@@ -16,6 +17,7 @@ const Checkout = () => {
             try {
                 const user = getCurrentUser();
                 setUser(user);
+                setDataUser(await getCurrentUserFirestore(user));
             } catch (error) {
                 console.log(error);
             }
@@ -27,7 +29,7 @@ const Checkout = () => {
         <div className='divCheckout'>
             {
                 user ?
-                <MediosDePago user={user}/>
+                <MediosDePago user={dataUser}/>
                 :
                 <CheckoutUserForm/>
             }           

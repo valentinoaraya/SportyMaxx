@@ -15,6 +15,7 @@ import FormAddProductContainer from './containers/FormAddProductContainer/FormAd
 import EditProductsContainer from './containers/EditProductsContainer/EditProductsContainer.jsx';
 import ProductToEditContainer from './containers/ProductToEditContainer/ProductToEditContainer.jsx';
 import CheckoutContainer from './containers/CheckoutContainer/CheckoutContainer.jsx';
+import EditProfileContainer from './containers/EditProfileContainer/EditProfileContainer.jsx';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
             <Route path='/edit-product' element={<EditProductsContainer /> }></Route>
             <Route path='/edit-product/:id' element={<ProductToEditContainer/> }></Route>
             <Route path='/checkout' element={<CheckoutContainer /> }></Route>
+            <Route path='/edit-profile' element={<EditProfileContainer /> } ></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

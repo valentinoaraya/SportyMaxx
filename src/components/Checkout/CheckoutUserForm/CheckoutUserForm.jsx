@@ -7,16 +7,20 @@ const CheckoutUserForm = () => {
 
     const [nombreUsuario, setNombreUsuario] = useState("");
     const [email, setEmail] = useState("");
+    const [telefono, setTelefono] = useState("")
+    const [direccion, setDireccion] = useState("")
     const [user, setUser]  = useState(null)
 
     const handleSumbit = (e) => {
         e.preventDefault();
-        if (!nombreUsuario || !email) {
+        if (!nombreUsuario || !email || !telefono || !direccion) {
             return;
         }
         const newUser = {
-            displayName: nombreUsuario,
-            email
+            nombre: nombreUsuario,
+            email,
+            telefono,
+            direccion
         }
         setUser(newUser)
     }
@@ -37,10 +41,22 @@ const CheckoutUserForm = () => {
                                 onChange={(e) => setNombreUsuario(e.target.value)}                        
                             />
                         </div>
-                        <div className='divEmail'>
+                        <div>
                             <label htmlFor="name"><span>Email: </span></label>
                             <input type="text" id="name" name="name" required
                                 onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="name"><span>Teléfono: </span></label>
+                            <input type="text" id="name" name="name" required
+                                onChange={(e) => setTelefono(e.target.value)}                        
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="name"><span>Dirección: </span></label>
+                            <input type="text" id="name" name="name" required
+                                onChange={(e) => setDireccion(e.target.value)}                        
                             />
                         </div>
                         <Button onFinish={handleSumbit} type={"submit"} color={"allwidth btn-dark"}>Continuar</Button>

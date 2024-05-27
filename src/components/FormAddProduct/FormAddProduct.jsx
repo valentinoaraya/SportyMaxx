@@ -3,6 +3,7 @@ import "./FormAddProduct.css"
 import axios from 'axios';
 import Button from '../Button/Button.jsx';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const FormAddProduct = () => {
 
@@ -18,6 +19,18 @@ const FormAddProduct = () => {
 
     // Obtengo el token de usuario
     const token = localStorage.getItem("token")
+
+    const navigate = useNavigate("/")
+
+    const notifySucces = () => toast.success("Producto cargado con exito.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
+
+    const notifyError = () => toast.error("Error al cargar el producto.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
 
     const handleImagenChange = (e) => {
         const file = e.target.files[0];
@@ -51,6 +64,10 @@ const FormAddProduct = () => {
 
             if (resolve.status === 200) {
                 notifySucces()
+                const idTimeout = setTimeout(() => {
+                    navigate("/") 
+                    clearTimeout(idTimeout)
+                }, 1500)
             } else {
                 notifyError()
             }
@@ -63,15 +80,6 @@ const FormAddProduct = () => {
         setDisabledButton(false)
     }
 
-    const notifySucces = () => toast.success("Producto cargado con exito.", {
-        theme: "colored",
-        pauseOnHover: false
-    })
-
-    const notifyError = () => toast.error("Error al cargar el producto.", {
-        theme: "colored",
-        pauseOnHover: false
-    })
 
     return (
         <div className='divFormAddProduct'>

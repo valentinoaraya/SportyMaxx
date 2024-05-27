@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, setPersistence, browserLocalPersistence, onAuthStateChanged } from "firebase/auth";
+import { getFirestore, collection, addDoc, query, where, getDocs, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -12,6 +13,7 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 // Persistencia en las sesiones
 setPersistence(getAuth(app), browserLocalPersistence)
@@ -39,10 +41,13 @@ onAuthStateChanged(getAuth(app), async (user) => {
 })
 
 // Registrarse
-export const registerUser = async (nombre, email, password) => {
+export const registerUser = async (nombre, telefono, direccion, email, password) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(getAuth(app),email, password)
         await updateProfile(userCredential.user, {displayName: nombre})
+        const collectionRef = collection(db, "users")
+        const idUser = userCredential.user.uid
+        await addDoc(collectionRef, {idUser, nombre, telefono, direccion, email})
         console.log("Usuario registrado correctamente")
         return userCredential.user;
     } catch (error) {
@@ -75,9 +80,49 @@ export const signOutUser = async () => {
     }
 }
 
-// Obtener el usuario actual
+// Obtener el usuario actual from Firebase Auth
 export const getCurrentUser = () => {
     return getAuth(app).currentUser
+}
+
+// Obtener el usuario actual from Firestore
+export const getCurrentUserFirestore = async (userFromAuth) => {
+    try{
+        if (!userFromAuth) return null
+        const userRef = collection(db, "users")
+        const q = query(userRef, where("idUser", "==", userFromAuth.uid))
+        const querySnapshot = await getDocs(q)
+        return querySnapshot.docs[0].data()
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+// Actualizar el usuario
+export const updateUser = async (uid, data) => {
+    try {
+
+        const dataForAuth = {
+            displayName: data.nombre || null,
+            email: data.email || null,
+        }
+
+        // Primero actualizo el usuario de Auth
+        const user = getAuth(app).currentUser
+        await updateProfile(user, dataForAuth)
+
+        // Luego actualizo el usuario en Firestore
+        const userRef = collection(db, "users")
+        const q = query(userRef, where("idUser", "==", uid))
+        const querySnapshot = await getDocs(q)
+        const docRef = querySnapshot.docs[0].ref
+        await updateDoc(docRef, data)
+
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
 }
 
 // Obtener el rol del usuario
