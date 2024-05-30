@@ -1,5 +1,6 @@
-import {initializeApp} from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, setPersistence, browserLocalPersistence, onAuthStateChanged, sendEmailVerification} from "firebase/auth";
+import { getFirestore, collection, addDoc, query, where, getDocs, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -12,12 +13,57 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Persistencia en las sesiones
+setPersistence(getAuth(app), browserLocalPersistence)
+.then(() => {
+    console.log("Persistencia establecida")
+})
+.catch((error) => {
+    console.log(error)
+})
+
+// Cambios de autenticación y tokens
+onAuthStateChanged(getAuth(app), async (user) => {
+    if (user) {
+        try{
+            const token = await user.getIdToken();
+            localStorage.setItem("token", token);
+            console.log("Token actualizado")
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        localStorage.removeItem("token")
+        console.log("Usuario no autenticado, token eliminado")
+    }
+})
 
 // Registrarse
-export const registerUser = async (email, password) => {
+export const registerUser = async (nombre, telefono, direccion, email, password) => {
+
+    // Configuramos el email de verificación
+    const actionCodeSettings = {
+        url: "http://localhost:3000/",
+        handleCodeInApp: true
+    }
+
     try {
-        const userCredential = await createUserWithEmailAndPassword(getAuth(app),email, password)
+        // Creamos el usuario con los datos recibidos
+        const userCredential = await createUserWithEmailAndPassword(getAuth(app), email, password)
+        // Enviamos el email de verificación
+        await sendEmailVerification(userCredential.user, actionCodeSettings)
+        console.log("Verifique su correo electronico para activar su cuenta")
+        // Actualizamos el nombre
+        await updateProfile(userCredential.user, {displayName: nombre})
+        // Luego actualizamos el usuario en Firestore
+        const collectionRef = collection(db, "users")
+        const idUser = userCredential.user.uid
+        await addDoc(collectionRef, {idUser, nombre, telefono, direccion, email})
+        console.log("Usuario registrado correctamente")
         return userCredential.user;
+        
     } catch (error) {
         console.log(error)
         throw error
@@ -40,6 +86,7 @@ export const signInUser = async (email, password) => {
 export const signOutUser = async () => {
     try {
         await getAuth(app).signOut()
+        localStorage.removeItem("token")
         console.log("Sesion cerrada correctamente")
     } catch (error) {
         console.log("Error al cerrar sesión: ", error)
@@ -47,9 +94,46 @@ export const signOutUser = async () => {
     }
 }
 
-// Obtener el usuario actual
+// Obtener el usuario actual from Firebase Auth
 export const getCurrentUser = () => {
     return getAuth(app).currentUser
+}
+
+// Obtener el usuario actual from Firestore
+export const getCurrentUserFirestore = async (userFromAuth) => {
+    try{
+        if (!userFromAuth) return null
+        const userRef = collection(db, "users")
+        const q = query(userRef, where("idUser", "==", userFromAuth.uid))
+        const querySnapshot = await getDocs(q)
+        return querySnapshot.docs[0].data()
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+// Actualizar el usuario
+export const updateUser = async (uid, data) => {
+    try {
+        // Primero actualizo el usuario de Auth
+        const user = getAuth(app).currentUser
+        if (data.nombre !== user.displayName){
+            console.log("Actualizando nombre")
+            await updateProfile(user, {displayName: data.nombre})
+        }
+        
+        // Luego actualizo el usuario en Firestore
+        const userRef = collection(db, "users")
+        const q = query(userRef, where("idUser", "==", uid))
+        const querySnapshot = await getDocs(q)
+        const docRef = querySnapshot.docs[0].ref
+        await updateDoc(docRef, data)
+
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
 }
 
 // Obtener el rol del usuario

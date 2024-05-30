@@ -1,0 +1,96 @@
+.divCheckout{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.data-info-container{
+    width: 30rem;
+}
+
+.dataCartContainer{
+    width: 100%;
+    height: min-content;
+    border: 1px solid #d9d9d9;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.imgCheckoutData{
+    width: 4rem;
+    height: auto;
+    margin-right: 1rem;
+}
+
+.divInfoProduct{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 1rem 0;
+}
+
+.divInfoProduct div{
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.divInfoProduct p{
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+}
+
+ul li{
+    list-style: none;
+}
+
+.resaltName{
+    font-weight: 550;
+    font-size: 1.3rem;
+}
+
+.divTotalPrice{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.divTotalPrice p{
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.importantInfo{
+    padding: 1rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .resaltName{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .divCheckout{
+        flex-direction: column;
+    }
+
+    .data-info-container{
+        width: 100%;
+    }
+
+    .divMediosDePago{
+        margin-bottom: 2rem;
+    }
+}

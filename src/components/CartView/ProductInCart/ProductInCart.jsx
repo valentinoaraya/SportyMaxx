@@ -12,7 +12,7 @@ const ProductInCart = ({ product }) => {
         <div className='cardProductInCart'>
             <div className='divProductInCartIMG'>
                 <Link to={`/item/${product.id}`}>
-                    <img src={product.imagen} alt="Imagen producto" />
+                    <img src={product.imagen.url} alt="Imagen producto" data-bs-dismiss="offcanvas" />
                 </Link>
             </div>
             <div className='divProductInCartInfo'>

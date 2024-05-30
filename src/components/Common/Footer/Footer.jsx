@@ -25,6 +25,9 @@ const Footer = () => {
                     titleSection2={"REDES SOCIALES"} arraySubtitles2={arraySocials} 
                 />
             </section>
+            <section className='sectionCopyright'>
+                <p>Página diseñada y desarrollada por Valentino Araya. - Instagram: @tinoaraya</p>
+            </section>
         </footer>
     );
 }

@@ -7,18 +7,22 @@ import axios from 'axios';
 const ProductDetailContainer = () => {
 
     const {id} = useParams()
-
-    // const product = arrayProducts.find((e)=>{
-    //     return e.id == id
-    // })
-
-    const [product, setProduct] = useState({})
+    const [product, setProduct] = useState({
+        imagen: {
+            url: ""
+        },
+        imagenSecundaria: {
+            url: ""
+        },
+    })
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const getProduct = async () => {
             try {
                 const response = await axios.get(`http://localhost:4000/item/${id}`)
                 setProduct(response.data.data)
+                setIsLoading(false)
             } catch (error) {
                 console.log(error)
             }
@@ -27,10 +31,16 @@ const ProductDetailContainer = () => {
         getProduct()
     }, [id]);
 
-
     return (
         <div className='divProductDetailContainer'>
-            <ProductDetail product={product}></ProductDetail>
+            {
+                isLoading ? 
+                <div className='cargandoProductoContainer'>
+                    <h1>Cargando producto...</h1>
+                </div>
+                : 
+                <ProductDetail product={product} />
+            }
         </div>
     );
 }

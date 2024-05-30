@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import "./LoginRegister.css"
 import { useParams } from 'react-router-dom';
 import { signInUser, registerUser } from '../../services/firebase.js';
+import Button from "../Button/Button.jsx";
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const LoginRegister = () => {
 
@@ -9,24 +12,70 @@ const LoginRegister = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [nombre, setNombre] = useState("")
+    const [telefono, setTelefono] = useState("")
+    const [direccion, setDireccion] = useState("")
+    const [disabledButton, setDisabledButton] = useState(false)
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setDisabledButton(true)
         try{
             if (action === "login") {
-                signInUser(email, password)
+                await signInUser(email, password)
+                navigate("/user-info")
             } else {
-                registerUser(email, password)
+                await registerUser(nombre, telefono, direccion, email, password)
+                navigate(`/verify-email/${email}`)
             }
         } catch (error) {
-            console.log(error)
+            setDisabledButton(false)
+            notify()
         }
     }
 
+    const notify = () => toast.error(action === "login" ? "Error al iniciar sesión" : "Error al registrar usuario", {
+        theme: "colored",
+        pauseOnHover: false
+    })
+
     return (
-        <div>
-            <div>
+        <div className='loginRegister'>
+            <div className='divLoginRegister'>
+                <h2>{action === "login" ? "Iniciar Sesión" : "Registrarse"}</h2>                
                 <form onSubmit={handleSubmit} className="formLoginRegister">
+                    {
+                        action === "register" &&
+                        <div className='divInputsRegister'>
+                            <label>
+                                Nombre y apellido:
+                                <input type="text" name="text" id="text" placeholder="Nombre y apellido"
+                                    value={nombre}
+                                    onChange={(e) => setNombre(e.target.value)} 
+                                    required
+                                />
+                            </label>
+                            <label>
+                                Telefono:
+                                <input type="text" name="text" id="text" placeholder="Telefono"
+                                    value={telefono}
+                                    onChange={(e) => setTelefono(e.target.value)} 
+                                    required
+                                />
+                            </label>
+                            <label>
+                                Dirección:
+                                <input type="text" name="text" id="text" placeholder="Direccion"
+                                    value={direccion}
+                                    onChange={(e) => setDireccion(e.target.value)} 
+                                    required
+                                />
+                            </label>
+                        </div>
+                    }
+
                     <label>
                         Correo Electrónico:
                         <input type="email" name="email" id="email" placeholder="Email"
@@ -43,10 +92,12 @@ const LoginRegister = () => {
                             required
                         />
                     </label>
-                    <input type="submit" value={action === "login" ? "Iniciar Sesión" : "Registrarse" } />
+                    <Button color={"btn-dark"} enabledDisabled={disabledButton} type={"submit"} >{action === "login" ? "Iniciar Sesión" : "Registrarse" }</Button>
                 </form>
+                <ToastContainer
+                    autoClose={2000}
+                />
             </div>
-            
         </div>
     );
 }
