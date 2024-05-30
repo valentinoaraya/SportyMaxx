@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, setPersistence, browserLocalPersistence, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, setPersistence, browserLocalPersistence, onAuthStateChanged, sendEmailVerification} from "firebase/auth";
 import { getFirestore, collection, addDoc, query, where, getDocs, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -42,14 +42,28 @@ onAuthStateChanged(getAuth(app), async (user) => {
 
 // Registrarse
 export const registerUser = async (nombre, telefono, direccion, email, password) => {
+
+    // Configuramos el email de verificación
+    const actionCodeSettings = {
+        url: "http://localhost:3000/",
+        handleCodeInApp: true
+    }
+
     try {
-        const userCredential = await createUserWithEmailAndPassword(getAuth(app),email, password)
+        // Creamos el usuario con los datos recibidos
+        const userCredential = await createUserWithEmailAndPassword(getAuth(app), email, password)
+        // Enviamos el email de verificación
+        await sendEmailVerification(userCredential.user, actionCodeSettings)
+        console.log("Verifique su correo electronico para activar su cuenta")
+        // Actualizamos el nombre
         await updateProfile(userCredential.user, {displayName: nombre})
+        // Luego actualizamos el usuario en Firestore
         const collectionRef = collection(db, "users")
         const idUser = userCredential.user.uid
         await addDoc(collectionRef, {idUser, nombre, telefono, direccion, email})
         console.log("Usuario registrado correctamente")
         return userCredential.user;
+        
     } catch (error) {
         console.log(error)
         throw error
@@ -102,16 +116,13 @@ export const getCurrentUserFirestore = async (userFromAuth) => {
 // Actualizar el usuario
 export const updateUser = async (uid, data) => {
     try {
-
-        const dataForAuth = {
-            displayName: data.nombre || null,
-            email: data.email || null,
-        }
-
         // Primero actualizo el usuario de Auth
         const user = getAuth(app).currentUser
-        await updateProfile(user, dataForAuth)
-
+        if (data.nombre !== user.displayName){
+            console.log("Actualizando nombre")
+            await updateProfile(user, {displayName: data.nombre})
+        }
+        
         // Luego actualizo el usuario en Firestore
         const userRef = collection(db, "users")
         const q = query(userRef, where("idUser", "==", uid))

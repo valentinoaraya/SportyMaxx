@@ -17,7 +17,7 @@ const LoginRegister = () => {
     const [direccion, setDireccion] = useState("")
     const [disabledButton, setDisabledButton] = useState(false)
 
-    const navigate = useNavigate("/user-info")
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,10 +25,11 @@ const LoginRegister = () => {
         try{
             if (action === "login") {
                 await signInUser(email, password)
+                navigate("/user-info")
             } else {
                 await registerUser(nombre, telefono, direccion, email, password)
+                navigate(`/verify-email/${email}`)
             }
-            navigate("/user-info")
         } catch (error) {
             setDisabledButton(false)
             notify()

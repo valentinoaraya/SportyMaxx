@@ -2,21 +2,21 @@ import React, { useEffect, useState } from 'react';
 import './EditProfile.css';
 import { updateUser, getCurrentUserFirestore, getCurrentUser } from '../../services/firebase.js';
 import Button from '../Button/Button.jsx';
+import { toast, ToastContainer } from 'react-toastify';
 
 const EditProfile = () => {
 
     const [user, setUser] = useState(null);
     const [dataUser, setDataUser] = useState({
         nombre: "",
-        email: "",
         telefono: "",
         direccion: ""
     });
     const [nombre, setNombre] = useState("");
-    const [email, setEmail] = useState("");
     const [telefono, setTelefono] = useState("");
     const [direccion, setDireccion] = useState("");
-
+    const [dissabledButton, setDissabledButton] = useState(false);
+    
     useEffect(() => {
         const checkUser = async () => {
             try {
@@ -31,20 +31,34 @@ const EditProfile = () => {
         checkUser();
     }, [])
 
+    const notifySucces = () => toast.success("Perfil actualizada con exito.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
+
+    const notifyError = () => toast.error("Error al actualizar el perfil.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setDissabledButton(true)
         try {
             const dataUpdate = {
                 nombre: nombre || dataUser.nombre,
-                email: email || dataUser.email,
                 telefono: telefono || dataUser.telefono,
                 direccion: direccion || dataUser.direccion
             }
             console.log(user.uid)
             console.log(dataUpdate)
             await updateUser(user.uid, dataUpdate);
+            notifySucces();
+            setDissabledButton(false)
         } catch (error) {
             console.log(error);
+            notifyError();
+            setDissabledButton(false)
             throw error
         }
     }
@@ -61,16 +75,7 @@ const EditProfile = () => {
                             type="text"
                             value={nombre}
                             onChange={(e) => setNombre(e.target.value)}
-                            placeholder={dataUser.nombre}
-                        />
-                    </label>
-                    <label>
-                        Email:
-                        <input
-                            type="text"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder={dataUser.email}
+                            placeholder={user.displayName}
                         />
                     </label>
                     <label>
@@ -91,13 +96,14 @@ const EditProfile = () => {
                             placeholder={dataUser.direccion}
                         />
                     </label>
-                    <Button color={"btn-dark"} onFinish={handleSubmit} >Guardar cambios</Button>
+                    <Button color={"btn-dark"} onFinish={handleSubmit} enabledDisabled={dissabledButton}>{dissabledButton ? "Actualizando..." : "Actualizar perfil"}</Button>
                 </form>
                 :
                 <div className='errorContainer'>
                     <h2>Usuario no encontrado, vuelve a iniciar sesión.</h2>
                 </div>
             }
+            <ToastContainer />
         </div>
     );
 }

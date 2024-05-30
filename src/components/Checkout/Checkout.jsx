@@ -58,7 +58,7 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className='importantInfo'>
-                    <p><span>Envío a convenir.</span></p>
+                    <p><span>Envíos a convenir.</span></p>
                     <p>El envío de los productos será acordado mediante Whatsapp.</p>
                     <p>En el siguiente paso se le solicitará el envío del comprobante de pago a nuestro Whatsapp, donde acordaremos la dirección y el medio de entrega del envío.</p>
                     <p><span>¡Gracias por confiar en nosotros!</span></p>

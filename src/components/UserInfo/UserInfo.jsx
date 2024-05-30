@@ -25,6 +25,8 @@ const UserInfo = () => {
         checkUser();
     },[user])
 
+    console.log(user)
+
     const handleSignOut = async () => {
         try {
             await signOutUser();
@@ -53,8 +55,8 @@ const UserInfo = () => {
                     <section className='sectionDataUser'>
                         <div className='divData divDatosPersonales'>
                             <h3>Datos personales:</h3>
-                            <p><span>Nombre:</span> {dataUser.nombre}</p>
-                            <p><span>Correo:</span> {dataUser.email}</p>
+                            <p><span>Nombre:</span> {user.displayName}</p>
+                            <p><span>Correo:</span> {user.email}</p>
                             <p><span>Teléfono:</span> {dataUser.telefono}</p>
                             <p><span>Dirección:</span> {dataUser.direccion}</p>
                         </div>

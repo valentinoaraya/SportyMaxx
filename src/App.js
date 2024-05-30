@@ -16,6 +16,7 @@ import EditProductsContainer from './containers/EditProductsContainer/EditProduc
 import ProductToEditContainer from './containers/ProductToEditContainer/ProductToEditContainer.jsx';
 import CheckoutContainer from './containers/CheckoutContainer/CheckoutContainer.jsx';
 import EditProfileContainer from './containers/EditProfileContainer/EditProfileContainer.jsx';
+import VerifyEmailContainer from './containers/VerifyEmailContainer/VerifyEmailContainer.jsx';
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
             <Route path='/edit-product/:id' element={<ProductToEditContainer/> }></Route>
             <Route path='/checkout' element={<CheckoutContainer /> }></Route>
             <Route path='/edit-profile' element={<EditProfileContainer /> } ></Route>
+            <Route path='/verify-email/:email' element={<VerifyEmailContainer /> }></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

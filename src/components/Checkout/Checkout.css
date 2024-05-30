@@ -84,10 +84,13 @@ ul li{
 @media screen and (max-width: 750px) {
     .divCheckout{
         flex-direction: column;
-        flex-flow: column-reverse;
     }
 
     .data-info-container{
         width: 100%;
+    }
+
+    .divMediosDePago{
+        margin-bottom: 2rem;
     }
 }
