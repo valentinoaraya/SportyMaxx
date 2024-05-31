@@ -21,9 +21,9 @@ const ProductList = ({search}) => {
             try {
                 let response = []
                 if (location.pathname === "/"){
-                    response = await axios.get(`http://localhost:4000/?category=${categoria || "destacado"}`)
+                    response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/?category=${categoria || "destacado"}`)
                 } else {
-                    response = await axios.get(`http://localhost:4000/?category=${categoria || ""}`)
+                    response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/?category=${categoria || ""}`)
                 }
                 setProductosFiltrados(response.data.data)
                 setAllProducts(response.data.data)

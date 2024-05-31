@@ -55,7 +55,7 @@ const FormAddProduct = () => {
         formData.append("imagenSecundaria",imagenSecundario);
 
         try {
-            const resolve = await axios.post("http://localhost:4000/add-product", formData, {
+            const resolve = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/add-product`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${token}`

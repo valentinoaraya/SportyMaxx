@@ -62,7 +62,7 @@ const FormUpdateProduct = () => {
             try {
                 console.log("Enviando formulario...")
                 console.log(formData)
-                const resolve = await axios.put(`http://localhost:4000/edit-product/${id}`, formData, {
+                const resolve = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/edit-product/${id}`, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: `Bearer ${token}`
@@ -94,7 +94,7 @@ const FormUpdateProduct = () => {
 
         console.log("Eliminando producto...")
         try {
-            const response = await axios.delete(`http://localhost:4000/delete-product/${id}`, {
+            const response = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/delete-product/${id}`, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${token}`

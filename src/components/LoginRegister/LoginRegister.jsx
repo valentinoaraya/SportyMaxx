@@ -41,6 +41,18 @@ const LoginRegister = () => {
         pauseOnHover: false
     })
 
+    const innerButton = () => {
+        if (action === "login" && !disabledButton) {
+            return "Iniciar Sesion"
+        } else if (action === "login" && disabledButton) {
+            return "Iniciando sesion..."
+        } else if (action === "register" && !disabledButton) {
+            return "Registrarse"
+        } else if (action === "register" && disabledButton) {
+            return "Registrando..."
+        }
+    }
+
     return (
         <div className='loginRegister'>
             <div className='divLoginRegister'>
@@ -92,7 +104,7 @@ const LoginRegister = () => {
                             required
                         />
                     </label>
-                    <Button color={"btn-dark"} enabledDisabled={disabledButton} type={"submit"} >{action === "login" ? "Iniciar Sesión" : "Registrarse" }</Button>
+                    <Button color={"btn-dark"} enabledDisabled={disabledButton} type={"submit"} >{innerButton()}</Button>
                 </form>
                 <ToastContainer
                     autoClose={2000}

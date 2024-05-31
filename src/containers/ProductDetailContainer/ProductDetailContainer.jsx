@@ -20,7 +20,7 @@ const ProductDetailContainer = () => {
     useEffect(() => {
         const getProduct = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/item/${id}`)
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/item/${id}`)
                 setProduct(response.data.data)
                 setIsLoading(false)
             } catch (error) {
