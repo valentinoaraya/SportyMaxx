@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10rem;
+    padding: 10rem 0 10rem 0;
 }
 
 .inputSearchContainer{
@@ -32,4 +32,10 @@
     font-size: 1rem;
     outline: none;
     margin: 0;
+}
+
+@media screen and (max-width: 960px) {
+    .titleNoProducts{
+        padding: 8rem 0 8rem 0;
+    }
 }
