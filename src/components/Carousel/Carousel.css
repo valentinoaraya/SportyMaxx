@@ -2,8 +2,7 @@
     width: 100%;
 }
 
-@media screen and (max-width: 540px) {
-
+@media screen and (max-width: 1200px) {
     .carousel{
         width: 80%;
     }
@@ -14,9 +13,8 @@
     }
 }
 
-
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 510px) {
     .carousel{
-        width: 65%;
+        width: 100%;
     }
 }
