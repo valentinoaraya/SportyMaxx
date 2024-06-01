@@ -85,8 +85,19 @@
 
 }
 
-@media screen and (max-width: 540px){
+@media screen and (max-width: 510px){
     .divProductDetail h2{
         font-size: 2rem;
+    }
+
+    .divImgProductDetail{
+        width: 20rem;
+    }
+}
+
+@media screen and (max-width: 350px){
+
+    .divImgProductDetail{
+        width: 18rem;
     }
 }
