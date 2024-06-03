@@ -30,7 +30,6 @@ onAuthStateChanged(getAuth(app), async (user) => {
         try{
             const token = await user.getIdToken();
             localStorage.setItem("token", token);
-            console.log("Token actualizado")
         } catch (error) {
             console.log(error)
         }
