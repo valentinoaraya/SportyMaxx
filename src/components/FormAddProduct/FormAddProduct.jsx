@@ -14,8 +14,10 @@ const FormAddProduct = () => {
     const [imagen, setImagen] = useState(null)
     const [imagenSecundario, setImagenSecundaria] = useState(null)
     const [disabledButton, setDisabledButton] = useState(false)
+    const [arrayTalles, setArrayTalles] = useState([])
 
     const cats = ["DESTACADO", "REMERAS", "BUZOS", "CAMISAS", "PANTALONES", "BERMUDAS", "MALLAS", "ACCESORIOS", "VCP", "HARVEY WILLYS", "VIEJASCUL", "Manga corta", "Manga larga", "Chombas", "Con capucha", "Sin capucha", "Jeans", "Algodon", "Gabardina", "Boxers", "Billeteras", "Gorros", "Pilusos", "Gorras", "Australianos", "Medias",]
+    const talles = ["XS", "S", "M", "L", "XL", "XXL"]
 
     // Obtengo el token de usuario
     const token = localStorage.getItem("token")
@@ -53,6 +55,7 @@ const FormAddProduct = () => {
         formData.append("categories",categories);
         formData.append("imagen",imagen);
         formData.append("imagenSecundaria",imagenSecundario);
+        formData.append("talles",arrayTalles);
 
         try {
             const resolve = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/add-product`, formData, {
@@ -79,7 +82,6 @@ const FormAddProduct = () => {
         
         setDisabledButton(false)
     }
-
 
     return (
         <div className='divFormAddProduct'>
@@ -156,6 +158,36 @@ const FormAddProduct = () => {
                         required
                     />
                 </label>
+                <div className='divTallesContainer'>
+                    <label>
+                        Talles:
+                    </label>
+                    <div>
+                        {
+                            talles.map((talle, index) => (
+                                // REVISAR Y TERMINAR
+                                <div key={index} className="form-check form-check-inline">
+                                    <input 
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        value={talle}
+                                        name={talle}
+                                        checked={arrayTalles.includes(talle)}
+                                        required
+                                        onChange={(e) => {
+                                            if (e.target.checked) {
+                                                setArrayTalles([...arrayTalles, e.target.value])
+                                            } else {
+                                                setArrayTalles(arrayTalles.filter(t => t !== e.target.value))
+                                            }
+                                        }}
+                                    />
+                                    <label className="form-check-label" htmlFor={talle}><span>{talle}</span></label>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
                 <Button color={"btn-dark"} type={"submit"} enabledDisabled={disabledButton}>{disabledButton ? "Cargando producto..." : "Cargar producto"}</Button>  
             </form>
             <ToastContainer

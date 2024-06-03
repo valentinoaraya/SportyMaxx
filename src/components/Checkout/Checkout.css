@@ -32,7 +32,7 @@
     padding: 1rem 0;
 }
 
-.divInfoProduct div{
+.divInfoProduct .divImgProduct{
     display: flex;
     align-items: center;
     margin-right: 1rem;
@@ -75,9 +75,18 @@ ul li{
     margin-bottom: 1rem;
 }
 
+.divNombreTalle{
+    display: flex;
+    flex-direction: column;
+}
+
 @media screen and (max-width: 1000px) {
     .resaltName{
         font-size: 1rem;
+    }
+
+    .pTalle{
+        font-size: 0.7rem;
     }
 }
 

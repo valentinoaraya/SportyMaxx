@@ -17,6 +17,7 @@ const ProductToEditContainer = () => {
         }
     })
     const [productCategories, setProductCategories ] = useState([])
+    const [productTalles, setProductTalles] = useState([])
 
     useEffect(() => {
         const getProduct = async () => {
@@ -24,6 +25,7 @@ const ProductToEditContainer = () => {
                 const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/item/${id}`)
                 setProduct(response.data.data)
                 setProductCategories(response.data.data.categories)
+                setProductTalles(response.data.data.talles)
             } catch (error) {
                 console.log(error)
             }
@@ -35,7 +37,7 @@ const ProductToEditContainer = () => {
 
     return (
         <div className='productToEditContainer'>
-            <ProductToEdit product={product} categories={productCategories}/>
+            <ProductToEdit product={product} categories={productCategories} talles={productTalles}/>
         </div>
     );
 }

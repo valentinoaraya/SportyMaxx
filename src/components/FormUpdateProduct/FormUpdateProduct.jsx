@@ -17,11 +17,14 @@ const FormUpdateProduct = () => {
     const [precio, setPrecio] = useState("")
     const [stock, setStock] = useState("")
     const [categories, setCategories] = useState([])
+    const [arrayTalles, setArrayTalles] = useState([])
     const [imagen, setImagen] = useState(null)
     const [imagenSecundario, setImagenSecundaria] = useState(null)
     const [disabledButton, setDisabledButton] = useState(false)
 
     const cats = ["DESTACADO", "REMERAS", "BUZOS", "CAMISAS", "PANTALONES", "BERMUDAS", "MALLAS", "ACCESORIOS", "VCP", "HARVEY WILLYS", "VIEJASCUL", "Manga corta", "Manga larga", "Chombas", "Con capucha", "Sin capucha", "Jeans", "Algodon", "Gabardina", "Boxers", "Billeteras", "Gorros", "Pilusos", "Gorras", "Australianos", "Medias",]
+    const talles = ["XS", "S", "M", "L", "XL", "XXL"]
+
 
     const notifySucces = (action) => toast.success(action === "delete-product" ? "Producto eliminado con exito." : "Producto actualizado con exito.", {
         theme: "colored",
@@ -55,8 +58,9 @@ const FormUpdateProduct = () => {
         if (categories.length !== 0) formData.append("categories", categories);
         if (imagen) formData.append("imagen", imagen);
         if (imagenSecundario) formData.append("imagenSecundaria", imagenSecundario);
+        if (arrayTalles.length !== 0) formData.append("talles", arrayTalles);
 
-        if (!nombreProducto && !imagen && !imagenSecundario && categories.length === 0 && !stock && !precio) {
+        if (!nombreProducto && !imagen && !imagenSecundario && categories.length === 0 && arrayTalles.length === 0 && !stock && !precio) {
             console.log("No hay nada que actualizar")
         } else {
             try {
@@ -116,6 +120,8 @@ const FormUpdateProduct = () => {
 
         setDisabledButton(false)
     }
+
+    console.log(arrayTalles)
 
     return (
         <div className='divFormUpdateProduct'>
@@ -189,6 +195,34 @@ const FormUpdateProduct = () => {
                         onChange={handleImagenSecundariaChange}
                     />
                 </label>
+                <div>
+                    <label>
+                        <span>Talles:</span>
+                    </label>
+                    <div>
+                        {
+                            talles.map((talle, index) => (
+                                <div key={index} className="form-check form-check-inline">
+                                    <input
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        value={talle}
+                                        name={talle}
+                                        checked={arrayTalles.includes(talle)}
+                                        onChange={(e) => {
+                                            if (e.target.checked) {
+                                                setArrayTalles([...arrayTalles, e.target.value])
+                                            } else {
+                                                setArrayTalles(arrayTalles.filter(t => t !== e.target.value))
+                                            }
+                                        }}
+                                    />
+                                    <label className="form-check-label" htmlFor={talle}><span>{talle}</span></label>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
                 <Button color={"btn-dark"} type={"submit"} enabledDisabled={disabledButton}>Actualizar producto</Button>
             </form>
 
