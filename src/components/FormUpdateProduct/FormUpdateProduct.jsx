@@ -64,8 +64,6 @@ const FormUpdateProduct = () => {
             console.log("No hay nada que actualizar")
         } else {
             try {
-                console.log("Enviando formulario...")
-                console.log(formData)
                 const resolve = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/edit-product/${id}`, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
@@ -96,7 +94,6 @@ const FormUpdateProduct = () => {
 
         const action = "delete-product"
 
-        console.log("Eliminando producto...")
         try {
             const response = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/delete-product/${id}`, {
                 headers: {
@@ -104,7 +101,7 @@ const FormUpdateProduct = () => {
                     Authorization: `Bearer ${token}`
                 }
             })
-            console.log(response)
+
             if (response.status === 200) {
                 notifySucces(action)
                 const idTimeout = setTimeout(() => {
@@ -120,8 +117,6 @@ const FormUpdateProduct = () => {
 
         setDisabledButton(false)
     }
-
-    console.log(arrayTalles)
 
     return (
         <div className='divFormUpdateProduct'>

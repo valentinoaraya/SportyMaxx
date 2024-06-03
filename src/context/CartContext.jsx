@@ -33,7 +33,6 @@ const CartContextProvider = ({children}) => {
 
     const vaciarCarrito = () => {
         setCart([])
-        console.log("el carrito fue vaciado")
         localStorage.removeItem("Cart")
     }
 

@@ -46,6 +46,12 @@ const FormAddProduct = () => {
 
     const handleSumit = async (e) => {
         e.preventDefault();
+
+        if (categories.length === 0) {
+            notifyError()
+            return
+        }
+
         setDisabledButton(true)
 
         const formData = new FormData();
@@ -173,7 +179,6 @@ const FormAddProduct = () => {
                                         value={talle}
                                         name={talle}
                                         checked={arrayTalles.includes(talle)}
-                                        required
                                         onChange={(e) => {
                                             if (e.target.checked) {
                                                 setArrayTalles([...arrayTalles, e.target.value])
