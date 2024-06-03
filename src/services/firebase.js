@@ -44,7 +44,7 @@ export const registerUser = async (nombre, telefono, direccion, email, password)
 
     // Configuramos el email de verificación
     const actionCodeSettings = {
-        url: "http://localhost:3000/",
+        url: "https://sporty-maxx.vercel.app",
         handleCodeInApp: true
     }
 
