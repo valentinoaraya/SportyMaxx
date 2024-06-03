@@ -41,9 +41,14 @@ const Checkout = () => {
                                 cart.map((prod)=>{
                                     return <li key={prod.id}>
                                         <div className='divInfoProduct'>
-                                            <div>
+                                            <div className='divImgProduct'>
                                                 <img src={prod.imagen.url} alt="Imagen producto" className='imgCheckoutData' />
-                                                <p><span className='resaltName'>{prod.nombre}</span> x{prod.count}</p>
+                                                <div className='divNombreTalle'>
+                                                    <p><span className='resaltName'>{prod.nombre}</span> x{prod.count}</p>
+                                                    {
+                                                        prod.talleSeleccionado && <p>Talle: {prod.talleSeleccionado}</p>
+                                                    }
+                                                </div>
                                             </div>
                                             <p>${prod.precio*prod.count}</p>
                                         </div>

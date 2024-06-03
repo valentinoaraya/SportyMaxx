@@ -2,7 +2,7 @@ import React from 'react';
 import './ProductToEdit.css'
 import FormUpdateProduct from '../FormUpdateProduct/FormUpdateProduct.jsx';
 
-const ProductToEdit = ({product, categories}) => {
+const ProductToEdit = ({product, categories, talles}) => {
     
     return (
         <div className='divProductToEditContainer'>
@@ -22,8 +22,8 @@ const ProductToEdit = ({product, categories}) => {
                     <p><span>Nombre:</span> {product.nombre}</p>
                     <p><span>Precio:</span> ${product.precio}</p>
                     <p><span>Stock:</span> {product.stock}</p>
-                    <p><span>Categorias:</span> </p>
                 </div>
+                <p><span>Categorias:</span> </p>
                 <ul>
                     {
                         categories.map((cat)=>{
@@ -31,7 +31,14 @@ const ProductToEdit = ({product, categories}) => {
                         })
                     }
                 </ul>
-                
+                <p><span>Talles:</span> </p>
+                <ul>
+                    {
+                        talles.map((talle)=>{
+                            return <li className='liCategories' key={talle}>{talle.toUpperCase()}</li>
+                        })
+                    }
+                </ul>
             </div>
             <div className='formEdit'>
                 <h2>Actualizar producto:</h2>

@@ -25,8 +25,6 @@ const UserInfo = () => {
         checkUser();
     },[user])
 
-    console.log(user)
-
     const handleSignOut = async () => {
         try {
             await signOutUser();

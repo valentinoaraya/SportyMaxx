@@ -11,6 +11,15 @@ const ProductDetail = ({ product }) => {
 
     const { addToCart, cart } = useContext(cartContext)
     const [role, setRole] = useState(null)
+    const [talleSelected, setTalleSelected] = useState(null)
+
+    const mostrarTalles = () => {
+        if (product.talles.length === 1 && product.talles[0] === "") {
+            return false
+        } else {
+            return true
+        }
+    }
 
     useEffect(() => {
         const checkUser = async () => {
@@ -36,6 +45,23 @@ const ProductDetail = ({ product }) => {
         enabledDisabled = true
     }
 
+    const handleSelectTalle = (e) => {
+        setTalleSelected(e.target.innerText)
+    }
+
+    if (mostrarTalles() && talleSelected === null) {
+        enabledDisabled = true
+    }
+
+    const handleAddToCart = () => {
+        const newProduct = {
+            ...product,
+            talleSeleccionado: talleSelected
+        }
+        addToCart(newProduct, 1)
+        notify()
+    }
+
     return (
         <section className='sectionProductDetail'>
             <div className='divImgProductDetail'>
@@ -48,30 +74,32 @@ const ProductDetail = ({ product }) => {
                     <p className='precioDetail'>$ {product.precio}</p>
                     <p>Disponibles: {product.stock}</p>
                 </div>
-                <div className='divSeleccionarTalle'>
-                    <h3 className='seleccionarTalle'>Seleccionar Talle</h3>
-                    <div className='botonesSeleccionarTalle'>
-                        <div>
-                            <Button isPressed={true} color={"btn-outline-dark"}>XXL</Button>
+                {
+                    mostrarTalles() &&
+                    <div className='divSeleccionarTalle'>
+                        <h3 className='seleccionarTalle'>Seleccionar talle</h3>
+                        <div className='botonesSeleccionarTalle'>
+                            {
+                                product.talles.map((talle) => {
+
+                                    if (talleSelected === talle) {
+                                        return <div key={talle} onClick={handleSelectTalle}>
+                                            <Button color={"btn-dark"}>{talle}</Button>
+                                        </div>
+                                    }
+
+                                    return <div key={talle} onClick={handleSelectTalle}>
+                                        <Button color={"btn-outline-dark"}>{talle}</Button>
+                                    </div>
+                                })
+                            }
                         </div>
-                        <div>
-                            <Button isPressed={true} color={"btn-outline-dark"}>XL</Button>
-                        </div>
-                        <div>
-                            <Button isPressed={true} color={"btn-outline-dark"}>L</Button>
-                        </div>
-                        <div>
-                            <Button isPressed={true} color={"btn-outline-dark"}>M</Button>
-                        </div>
-                        <div>
-                            <Button isPressed={true} color={"btn-outline-dark"}>S</Button>
-                        </div>
+                        <h4>Guía de talles</h4>
                     </div>
-                    <h4>Guía de talles</h4>
-                </div>
-                <div className='divAgregarCarrito' onClick={notify}>
+                }
+                <div className='divAgregarCarrito'>
                     <Button
-                        onFinish={() => addToCart(product, 1)}
+                        onFinish={handleAddToCart}
                         color={"btn-dark allwidth"}
                         enabledDisabled={enabledDisabled}
                     >

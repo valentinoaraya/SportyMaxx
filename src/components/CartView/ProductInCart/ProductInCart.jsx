@@ -18,7 +18,9 @@ const ProductInCart = ({ product }) => {
             <div className='divProductInCartInfo'>
                 <div className='productInfo'>
                     <h3>{product.nombre}</h3>
-                    <p>Talle: {product.cat}</p>
+                    {
+                        product.talleSeleccionado && <p>Talle: {product.talleSeleccionado}</p>
+                    }
                     <p>Cantidad: {product.cat}</p>
                     <p>$ {product.precio}</p>
                     <IncDec product={product} />
