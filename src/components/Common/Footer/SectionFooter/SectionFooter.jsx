@@ -18,6 +18,10 @@ const SectionFooter = ({ titleSection1, titleSection2, arraySubtitles1, arraySub
                         if (titleSection1 !== "MEDIOS DE PAGO") {
                             if (titleSection1 === "CATEGORÍAS"){
                                 return <Link key={element} className='linkFooter' to={`/category/${element.toLowerCase().replace(' ', '-')}`} >{element}</Link>
+                            } else if (titleSection1 === "DONDE ENCONTRARNOS"){
+                                return <a key={element} className='linkFooter mapReference' href='https://maps.app.goo.gl/b46zJg4VfQEVJVkf8' target='_blank' rel="noopener noreferrer">
+                                    <p>{element}</p>
+                                </a>
                             }
                             return <p key={element}>{element}</p> // Aquí van los elementos que necesitan un link o redirección
                         } else {

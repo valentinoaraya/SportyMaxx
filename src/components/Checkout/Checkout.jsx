@@ -29,9 +29,9 @@ const Checkout = () => {
         <div className='divCheckout'>
             {
                 user ?
-                <MediosDePago user={dataUser}/>
+                <MediosDePago user={dataUser} dataCart={cart}/>
                 :
-                <CheckoutUserForm/>
+                <CheckoutUserForm dataCart={cart}/>
             }           
             <div className='data-info-container'>
                 <div className='dataCartContainer'>

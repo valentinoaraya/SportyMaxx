@@ -73,6 +73,26 @@
     height: 50vh;
 }
 
+.ulOrders{
+    padding: 0 0 0 2rem;
+}
+
+.liOrders{
+    list-style:disc;
+}
+
+.liOrders p{
+    margin: 0.5rem;
+}
+
+.liOrders div{
+    margin-bottom: 1rem;
+}
+
+.spanOrderId{
+    font-size: 1.1rem;
+}
+
 @media screen and (max-width: 900px) {
     .divUserInfo{
         width: 100%;

@@ -60,7 +60,24 @@ const UserInfo = () => {
                         </div>
                         <div className='divData divMisCompras'>
                             <h3>Mis compras:</h3>
-                            <p>No hay compras aún</p>
+                            <ul className='ulOrders'>
+                                {
+                                    dataUser.orders ?
+                                    dataUser.orders.map((order) => {
+                                        return (
+                                            <li key={order.id} className='liOrders'>
+                                                <p><span className='spanOrderId'>Orden: </span>{order.id.slice(0, 6)}</p>
+                                                <div>
+                                                    <p>Fecha: {order.date}</p>
+                                                    <p>Total: ${order.total}</p>
+                                                </div>
+                                            </li>
+                                        )
+                                    })
+                                    :
+                                    <p>No hay compras aún</p>
+                                }
+                            </ul>
                         </div>
                     </section>
                     <div className='divButtons'>
