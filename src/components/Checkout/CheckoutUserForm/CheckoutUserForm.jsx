@@ -3,7 +3,7 @@ import "./CheckoutUserForm.css"
 import Button from "../../Button/Button.jsx";
 import MediosDePago from '../MediosDePago/MediosDePago.jsx';
 
-const CheckoutUserForm = () => {
+const CheckoutUserForm = ({dataCart}) => {
 
     const [nombreUsuario, setNombreUsuario] = useState("");
     const [email, setEmail] = useState("");
@@ -30,7 +30,7 @@ const CheckoutUserForm = () => {
         <>
             {
                 user ?
-                <MediosDePago user={user}/>
+                <MediosDePago user={user} dataCart={dataCart}/>
                 :
                 <div className='checkoutUserFormContainer'>
                     <h2>Datos del comprador:</h2>

@@ -1,9 +1,43 @@
 import React from 'react';
 import "./MediosDePago.css"
 import mercadoPagoLogo from "../../../assets/images/mercado-pago-logo-vector-2023.png";
-import { Link } from 'react-router-dom';
+import { createBuyOrder } from '../../../services/firebase.js';
 
-const MediosDePago = ({user}) => {
+const MediosDePago = ({user, dataCart}) => {
+
+    const handleFinishBuy = async (e) => {
+        e.preventDefault();
+
+        try {
+            const diaDeCompra = new Date();
+            const dia = diaDeCompra.getDate();
+            const mes = diaDeCompra.getMonth() + 1;
+            const anio = diaDeCompra.getFullYear();
+            const fecha = `${dia}/${mes}/${anio}`
+
+            const simplifyProducts = dataCart.map((prod) => {
+                return {
+                    id: prod.id,
+                    count: prod.count,
+                    talle: prod.talleSeleccionado,
+                    nombre: prod.nombre,
+                    precio: prod.precio
+                }
+            })
+    
+            const order = {
+                buyer: user,
+                date: fecha,
+                products: simplifyProducts,
+                total: dataCart.reduce((acc, prod) => acc + prod.precio*prod.count, 0)
+            }
+            
+            await createBuyOrder(order);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className='divMediosDePagoContainer'>
             <div className='divInfoUser'>
@@ -15,7 +49,7 @@ const MediosDePago = ({user}) => {
             </div>
             <div className='divMediosDePago'>
                 <h2>Medios de pago:</h2>
-                <Link className='linkMDP' to={"/"}>
+                
                     <div className='medioDePago'>
                         <div>
                             <span className='iconMDP iconEfectivo'>$</span>
@@ -23,8 +57,8 @@ const MediosDePago = ({user}) => {
                         </div>
                         <p> {">"} </p>
                     </div>
-                </Link>
-                <Link className='linkMDP' to={"/"}>
+                
+                
                     <div className='medioDePago'>
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" fill="currentColor" className="bi iconMDP bi-bank" viewBox="0 0 16 16">
@@ -34,16 +68,16 @@ const MediosDePago = ({user}) => {
                         </div>
                         <p> {">"} </p>
                     </div>
-                </Link>
-                <Link className='linkMDP' to={"/"}>
-                    <div className='medioDePago MDPmercadoPago'>
+                
+                
+                    <div className='medioDePago MDPmercadoPago' onClick={handleFinishBuy}>
                         <div>
                             <img src={mercadoPagoLogo} alt="Logo MercadoPago" className='iconMDP iconMercadoPago'/>
                             <p>MercadoPago (Transferencia - Tarjetas)</p>
                         </div>
                         <p> {">"} </p>
                     </div>
-                </Link>
+                
             </div>
         </div>
     );

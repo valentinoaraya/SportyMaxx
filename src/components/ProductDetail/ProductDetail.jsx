@@ -16,7 +16,7 @@ const ProductDetail = ({ product }) => {
     const mostrarTalles = () => {
         if (product.talles.length === 1 && product.talles[0] === "") {
             return false
-        } else {
+        } else if (product.stock >= 1) {
             return true
         }
     }
@@ -41,7 +41,7 @@ const ProductDetail = ({ product }) => {
     
     let enabledDisabled = false
 
-    if (product.stock === 0 || count === product.stock) {
+    if (product.stock < 1 || count === product.stock || !product.stock) {
         enabledDisabled = true
     }
 
@@ -72,9 +72,15 @@ const ProductDetail = ({ product }) => {
                 <div className='infoProductDetail'>
                     <p>{product.cat}</p>
                     <p className='precioDetail'>$ {product.precio}</p>
-                    <p>Disponibles: {product.stock}</p>
+                    {
+                        product.stock >= 1 ?
+                        <p>Disponibles: {product.stock}</p>
+                        : 
+                        <p>Sin stock</p>
+                    }
                 </div>
                 {
+                
                     mostrarTalles() &&
                     <div className='divSeleccionarTalle'>
                         <h3 className='seleccionarTalle'>Seleccionar talle</h3>

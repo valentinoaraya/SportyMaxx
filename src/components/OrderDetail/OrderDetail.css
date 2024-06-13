@@ -1,0 +1,36 @@
+.divOrderDetail{
+    
+    max-width: 1300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleOrder{
+    margin-bottom: 2rem;
+}
+
+.pProducts{
+    margin-bottom: 0;
+}
+
+.liProducts{
+    list-style: disc;
+    margin-left: 2rem;
+}
+
+.divOrder{
+    width: 100%;
+    padding: 2rem;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    margin: 1rem;
+}
+
+.titleOrderCargando{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}

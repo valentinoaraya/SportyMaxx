@@ -21,7 +21,7 @@ const ProductInCart = ({ product }) => {
                     {
                         product.talleSeleccionado && <p>Talle: {product.talleSeleccionado}</p>
                     }
-                    <p>Cantidad: {product.cat}</p>
+                    <p>Cantidad: {product.count}</p>
                     <p>$ {product.precio}</p>
                     <IncDec product={product} />
                 </div>
