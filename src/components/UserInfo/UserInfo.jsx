@@ -66,10 +66,17 @@ const UserInfo = () => {
                                     dataUser.orders.map((order) => {
                                         return (
                                             <li key={order.id} className='liOrders'>
-                                                <p><span className='spanOrderId'>Orden: </span>{order.id.slice(0, 6)}</p>
                                                 <div>
-                                                    <p>Fecha: {order.date}</p>
-                                                    <p>Total: ${order.total}</p>
+                                                    <p><span className='spanOrderId'>Orden: </span>{order.id.slice(0, 6)}</p>
+                                                    <div>
+                                                        <p>Fecha: {order.date}</p>
+                                                        <p>Total: ${order.total}</p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <Link className='linkButtonOrders' to={`/order-detail/${order.id}`}>
+                                                        <Button color={"btn-outline-dark"}>Ver Detalles</Button>
+                                                    </Link>
                                                 </div>
                                             </li>
                                         )

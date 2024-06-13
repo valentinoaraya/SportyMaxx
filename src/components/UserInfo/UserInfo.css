@@ -42,7 +42,7 @@
 
 .divButtons{
     display: flex;
-    margin: 1rem;
+    margin: 0 1rem;
     width: 100%;
     align-items: center;
     justify-content: space-evenly;
@@ -73,20 +73,19 @@
     height: 50vh;
 }
 
-.ulOrders{
-    padding: 0 0 0 2rem;
-}
-
 .liOrders{
-    list-style:disc;
+    list-style:none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #d9d9d9;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin: 1rem;
 }
 
 .liOrders p{
-    margin: 0.5rem;
-}
-
-.liOrders div{
-    margin-bottom: 1rem;
+    margin: 0.5rem 0 0 0;
 }
 
 .spanOrderId{

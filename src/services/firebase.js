@@ -192,3 +192,14 @@ export const createBuyOrder = async (order) => {
         console.log(error)
     }
 }
+
+export const getBuyOrder = async (id) => {
+    try {
+        const orderRef = collection(db, "orders")
+        const q = query(orderRef, where(documentId(), "==", id))
+        const querySnapshot = await getDocs(q)
+        return querySnapshot.docs[0].data()
+    } catch (error) {
+        console.log(error)
+    }
+}
