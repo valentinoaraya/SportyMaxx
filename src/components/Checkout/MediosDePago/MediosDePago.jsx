@@ -1,7 +1,7 @@
 import React from 'react';
 import "./MediosDePago.css"
 import mercadoPagoLogo from "../../../assets/images/mercado-pago-logo-vector-2023.png";
-import { createBuyOrder } from '../../../services/firebase.js';
+import axios from 'axios';
 
 const MediosDePago = ({user, dataCart}) => {
 
@@ -25,14 +25,27 @@ const MediosDePago = ({user, dataCart}) => {
                 }
             })
     
+            const dataBuyer = {
+                nombre: user.nombre,
+                email: user.email,
+                telefono: user.telefono,
+                direccion: user.direccion,
+                id: user.idUser
+            }
+
             const order = {
-                buyer: user,
+                buyer: dataBuyer,
                 date: fecha,
                 products: simplifyProducts,
                 total: dataCart.reduce((acc, prod) => acc + prod.precio*prod.count, 0)
             }
             
-            await createBuyOrder(order);
+            const resolve = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/orders/add-order`, order)
+            
+            if (resolve.status === 200){
+                console.log("Orden subida correctamente")
+            }
+
         } catch (error) {
             console.log(error);
         }
