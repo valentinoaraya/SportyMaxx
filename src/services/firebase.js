@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, setPersistence, browserLocalPersistence, onAuthStateChanged, sendEmailVerification} from "firebase/auth";
-import { getFirestore, collection, addDoc, query, where, getDocs, updateDoc, documentId, writeBatch, arrayUnion } from "firebase/firestore";
+import { getFirestore, collection, addDoc, query, where, getDocs, updateDoc, documentId } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
