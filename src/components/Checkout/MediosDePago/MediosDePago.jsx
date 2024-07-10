@@ -40,12 +40,11 @@ const MediosDePago = ({user, dataCart}) => {
                 total: dataCart.reduce((acc, prod) => acc + prod.precio*prod.count, 0)
             }
             
-            const resolve = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/orders/add-order`, order)
-            
-            if (resolve.status === 200){
-                console.log("Orden subida correctamente")
-            }
-
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/orders/add-order`, order)
+            .then(response => {
+                console.log("Orden creada correctamente")
+            })
+        
         } catch (error) {
             console.log(error);
         }
