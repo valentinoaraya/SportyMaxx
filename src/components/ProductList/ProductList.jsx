@@ -46,7 +46,6 @@ const ProductList = ({search}) => {
             const filteredProducts = allProducts.filter(product => product.nombre.toLowerCase().includes(e.target.value.toLowerCase()))
             setProductosFiltrados(filteredProducts)
         }
-        
     }
 
     return (

@@ -21,7 +21,7 @@ const OrderDetail = ({order}) => {
                             }
                         </ul>
                         <p><span>Método de pago:</span> IMPLEMENTAR</p>
-                        <p><span>Total:</span> {order.total}</p>
+                        <p><span>Total:</span> ${order.total}</p>
                         <p><span>Estado del pago:</span> IMPLEMENTAR</p>
                     </div>
                 </>

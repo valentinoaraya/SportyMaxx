@@ -1,0 +1,7 @@
+.buyOrdersContainer{
+    margin: 10rem 2rem 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
