@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./MediosDePago.css"
 import mercadoPagoLogo from "../../../assets/images/mercado-pago-logo-vector-2023.png";
 import axios from 'axios';
+import {toast, ToastContainer} from "react-toastify";
 
 const MediosDePago = ({user, dataCart}) => {
+
+    const [clicked, setClicked] = useState(false)
+
+    const notifySucces = () => toast.success("Orden creada con éxito, revise su correo electrónico.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
+
+    const notifyError = () => toast.error("Error al crear la orden.", {
+        theme: "colored",
+        pauseOnHover: false
+    })
 
     const handleFinishBuy = async (e) => {
         e.preventDefault();
 
         try {
+
+            setClicked(true)
+
             const diaDeCompra = new Date();
             const dia = diaDeCompra.getDate();
             const mes = diaDeCompra.getMonth() + 1;
@@ -42,9 +58,16 @@ const MediosDePago = ({user, dataCart}) => {
             
             await axios.post(`${process.env.REACT_APP_BACKEND_URL}/orders/add-order`, order)
             .then(response => {
-                console.log("Orden creada correctamente")
+                if (response.status === 200){
+                    setClicked(false)
+                    notifySucces()
+                }
             })
-        
+            .catch(error => {
+                setClicked(false)
+                notifyError()
+            })
+            
         } catch (error) {
             console.log(error);
         }
@@ -82,7 +105,7 @@ const MediosDePago = ({user, dataCart}) => {
                     </div>
                 
                 
-                    <div className='medioDePago MDPmercadoPago' onClick={handleFinishBuy}>
+                    <div className='medioDePago MDPmercadoPago' onClick={clicked ? undefined : handleFinishBuy}>
                         <div>
                             <img src={mercadoPagoLogo} alt="Logo MercadoPago" className='iconMDP iconMercadoPago'/>
                             <p>MercadoPago (Transferencia - Tarjetas)</p>
@@ -91,6 +114,9 @@ const MediosDePago = ({user, dataCart}) => {
                     </div>
                 
             </div>
+            <ToastContainer
+                autoClose={false}
+            />
         </div>
     );
 }

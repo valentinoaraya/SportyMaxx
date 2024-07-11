@@ -6,6 +6,7 @@ import axios from 'axios';
 const OrdersList = () => {
 
     const [orders, setOrders] = useState([])
+    const [ordersFiltered, setOrdersFiltered] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     const token = localStorage.getItem("token")
@@ -20,6 +21,7 @@ const OrdersList = () => {
                         Authorization: `Bearer ${token}`
                     }
                 })
+                setOrdersFiltered(response.data.data)
                 setOrders(response.data.data)
                 setIsLoading(false)
             } catch(error){
@@ -31,18 +33,37 @@ const OrdersList = () => {
     
     }, [token])
 
+    const handleSearch = (e) => {
+        e.preventDefault()
+        if (e.target.value === "") {
+            setOrdersFiltered(orders)
+        } else {
+            const fileteredOrders = orders.filter(order => order.id.toLowerCase().includes(e.target.value.toLowerCase()))
+            setOrdersFiltered(fileteredOrders)
+        }
+    }
+
     return (
         <div className='divOrdersList'>
+            <p className='inputSearchContainer'>
+                <input 
+                    className='inputSearch'
+                    onChange={handleSearch}
+                    type="text" 
+                    name='text'
+                    placeholder='Buscar orden por ID...'
+                />
+            </p>
             {
                 isLoading ? 
                 <div className='divLoading'>
                     <h1>Cargando...</h1>
                 </div> 
                 :
-                orders.length === 0 ?
+                ordersFiltered.length === 0 ?
                 <h1>No se encontraron órdenes</h1>
                 :
-                orders.map(({buyer, date, id, total })=>{
+                ordersFiltered.map(({buyer, date, id, total })=>{
                     return <Order
                         key={id}
                         id={id}
