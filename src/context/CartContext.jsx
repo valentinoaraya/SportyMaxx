@@ -14,14 +14,31 @@ const CartContextProvider = ({children}) => {
     }
 
     const addToCart = (item) => {
-        let indexProduct = cart.findIndex(product => product.id === item.id)
-        if (indexProduct === -1){
-            item.count = 1
-            newCart.push(item)
-            setCart(newCart)
+        if (item.talleSeleccionado) {
+            const indexProduct = cart.findIndex((product) => {
+                if (product.id === item.id && product.talleSeleccionado === item.talleSeleccionado){
+                    return product
+                }
+                return null
+            })
+            if (indexProduct === -1){
+                item.count = 1
+                newCart.push(item)
+                setCart(newCart)
+            } else {
+                newCart[indexProduct].count += 1
+                setCart(newCart)
+            }
         } else {
-            newCart[indexProduct].count += 1
-            setCart(newCart)
+            const indexProduct = cart.findIndex(product => product.id === item.id)
+            if (indexProduct === -1){
+                item.count = 1
+                newCart.push(item)
+                setCart(newCart)
+            } else {
+                newCart[indexProduct].count += 1
+                setCart(newCart)
+            }
         }
         localStorage.setItem("Cart", JSON.stringify(newCart))
     }
@@ -37,7 +54,7 @@ const CartContextProvider = ({children}) => {
     }
 
     const removeItem = (id) => {
-        let persistentProducts = cart.filter(prods => prods.id !== id)
+        let persistentProducts = cart.filter(prods => prods.id+prods.talleSeleccionado !== id)
         setCart(persistentProducts)
         localStorage.setItem("Cart", JSON.stringify(persistentProducts))
     }
