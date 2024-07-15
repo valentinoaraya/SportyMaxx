@@ -1,0 +1,22 @@
+.divFinishBuy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.titleMain{
+    margin-bottom: 2rem;
+}
+
+.finalP{
+    font-weight: 800;
+}
+
+.medioDePagoTransferencia ul{
+    margin-left: 1rem;
+}
+
+.medioDePagoTransferencia ul li{
+    list-style: disc;
+}
