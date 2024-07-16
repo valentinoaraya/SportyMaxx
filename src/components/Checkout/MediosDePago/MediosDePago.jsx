@@ -5,13 +5,52 @@ import axios from 'axios';
 import {toast, ToastContainer} from "react-toastify";
 import Button from "../../Button/Button.jsx"
 import { useNavigate } from 'react-router-dom';
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 
 const MediosDePago = ({user, dataCart}) => {
 
     const [clicked, setClicked] = useState(false)
     const [medioSeleccionado, setMedioSeleccionado] = useState(null)
+    const [preferenceId, setPreferenceId] = useState(null)
+    const [clickedOnMP, setClickedOnMP] = useState(false)
 
     const navigate = useNavigate()
+
+    console.log(dataCart)
+    
+    initMercadoPago(process.env.REACT_APP_MP_ACCESTOKEN, {
+        locale: "es-AR"
+    })
+
+    const createPreference = async () => {
+        try{
+
+            const productsToSend = dataCart.map((prod)=>{
+                return {
+                    title: prod.nombre,
+                    unit_price: prod.precio,
+                    quantity: prod.count,
+                }
+            })
+
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/payments/create-preference`, {
+                productsToSend
+            })
+
+            return response.data.id
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleBuyMP = async (e) => {
+        e.preventDefault()
+        setMedioSeleccionado(null)
+        setClickedOnMP(true)
+        const id = await createPreference()
+        if (id) setPreferenceId(id)
+    }    
 
     const notifyError = () => toast.error("Error al crear la orden.", {
         theme: "colored",
@@ -21,6 +60,8 @@ const MediosDePago = ({user, dataCart}) => {
     const handleSelectMethod = (e) => {
         e.preventDefault();
         setMedioSeleccionado(e.target.id)
+        setPreferenceId(null)
+        setClickedOnMP(false)
     }
 
     const handleFinishBuy = async (e) => {
@@ -52,7 +93,8 @@ const MediosDePago = ({user, dataCart}) => {
                 telefono: user.telefono,
                 direccion: user.direccion,
                 id: user.idUser,
-                medioDePago: medioSeleccionado
+                medioDePago: medioSeleccionado.charAt(0).toUpperCase() + medioSeleccionado.slice(1),
+                estadoDePago: "Pendiente"
             }
 
             const order = {
@@ -102,7 +144,7 @@ const MediosDePago = ({user, dataCart}) => {
                 </div>
                     
                 
-                <div className='medioDePago MDPmercadoPago' onClick={clicked ? undefined : handleFinishBuy}>
+                <div id='mercadoPago' className={clickedOnMP ? 'medioDePago MDPmercadoPago medioSeleccionado' : 'medioDePago MDPmercadoPago'} onClick={handleBuyMP}>
                     <div>
                         <img src={mercadoPagoLogo} alt="Logo MercadoPago" className='iconMDP iconMercadoPago'/>
                         <p>MercadoPago (Transferencia - Tarjetas)</p>
@@ -123,6 +165,16 @@ const MediosDePago = ({user, dataCart}) => {
                     medioSeleccionado && 
                     <div className='divButtonFinish'>
                         <Button onFinish={handleFinishBuy} enabledDisabled={clicked && true} color={"btn-dark"} >{clicked ? "Cargando..." : "Realizar pedido"}</Button>
+                    </div>
+                }
+
+                {
+                    preferenceId &&
+                    <div>
+                        <Wallet
+                            initialization={{preferenceId: preferenceId}}
+                            customization={{texts: {valueProp: "smart_option"}}}
+                        />
                     </div>
                 }
 

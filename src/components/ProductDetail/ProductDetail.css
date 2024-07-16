@@ -79,8 +79,16 @@
     }
 
     .divProductDetail{
-        margin: 1rem 0;
+        margin: 0.5rem 0;
         width: 100%;
+    }
+
+    .infoProductDetail, .divAgregarCarrito, .seleccionarTalle{
+        margin: 0;
+    }
+
+    .divSeleccionarTalle{
+        margin: 0.5rem 0;
     }
 
 }

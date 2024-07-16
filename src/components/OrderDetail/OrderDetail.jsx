@@ -2,7 +2,7 @@ import React from 'react';
 import "./OrderDetail.css"
 
 const OrderDetail = ({order}) => {
-    
+
     return (
         <div className='divOrderDetail'>
             {
@@ -16,13 +16,16 @@ const OrderDetail = ({order}) => {
                         <ul>
                             {
                                 order.products.map((product) => {
-                                    return <li className='liProducts' key={product.id}>{product.nombre} x {product.count}</li>
+                                    return <li className='liProducts' key={product.id}>
+                                        <p>{product.nombre} x {product.count}</p>
+                                        <p>Talle: {product.talle}</p>
+                                    </li>
                                 })
                             }
                         </ul>
-                        <p><span>Método de pago:</span> IMPLEMENTAR</p>
+                        <p><span>Método de pago:</span> {order.buyer.medioDePago}</p>
                         <p><span>Total:</span> ${order.total}</p>
-                        <p><span>Estado del pago:</span> IMPLEMENTAR</p>
+                        <p><span>Estado del pago:</span> {order.buyer.estadoDePago}</p>
                     </div>
                 </>
                 :

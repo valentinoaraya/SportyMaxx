@@ -7,3 +7,9 @@
     width: min-content;
     cursor: pointer;
 }
+
+@media screen and (max-width: 640px) {
+    .divFinishBuyContainer{
+        margin: 0 2rem;
+    }
+}
