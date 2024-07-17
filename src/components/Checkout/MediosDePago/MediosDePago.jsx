@@ -15,10 +15,8 @@ const MediosDePago = ({user, dataCart}) => {
     const [clickedOnMP, setClickedOnMP] = useState(false)
 
     const navigate = useNavigate()
-
-    console.log(dataCart)
     
-    initMercadoPago(process.env.REACT_APP_MP_ACCESTOKEN, {
+    initMercadoPago(process.env.REACT_APP_MP_PUBLIC_KEY, {
         locale: "es-AR"
     })
 
@@ -40,7 +38,7 @@ const MediosDePago = ({user, dataCart}) => {
             return response.data.id
 
         } catch (error) {
-            console.log(error)
+            notifyError("Error. Vuelve a intentarlo luego.")
         }
     }
 
@@ -48,11 +46,19 @@ const MediosDePago = ({user, dataCart}) => {
         e.preventDefault()
         setMedioSeleccionado(null)
         setClickedOnMP(true)
-        const id = await createPreference()
-        if (id) setPreferenceId(id)
+        await handleFinishBuy()
+        .then(async (response) =>{
+            if (response === 200){
+                setClickedOnMP(false)
+                const id = await createPreference()
+                if (id) setPreferenceId(id)
+            } else {
+                setClickedOnMP(false)
+            }
+        })
     }    
 
-    const notifyError = () => toast.error("Error al crear la orden.", {
+    const notifyError = (text) => toast.error(text, {
         theme: "colored",
         pauseOnHover: false
     })
@@ -64,10 +70,11 @@ const MediosDePago = ({user, dataCart}) => {
         setClickedOnMP(false)
     }
 
-    const handleFinishBuy = async (e) => {
-        e.preventDefault();
+    const handleFinishBuy = async () => {
 
         try {
+
+            let failure = false
 
             setClicked(true)
 
@@ -93,7 +100,7 @@ const MediosDePago = ({user, dataCart}) => {
                 telefono: user.telefono,
                 direccion: user.direccion,
                 id: user.idUser,
-                medioDePago: medioSeleccionado.charAt(0).toUpperCase() + medioSeleccionado.slice(1),
+                medioDePago: medioSeleccionado ? medioSeleccionado.charAt(0).toUpperCase() + medioSeleccionado.slice(1) : "MercadoPago",
                 estadoDePago: "Pendiente"
             }
 
@@ -108,16 +115,25 @@ const MediosDePago = ({user, dataCart}) => {
             .then(response => {
                 if (response.status === 200){
                     setClicked(false)
-                    navigate(`/finish-buy/${medioSeleccionado}`)
+                    if (medioSeleccionado) {
+                        navigate(`/finish-buy/${medioSeleccionado}`)
+                    }
                 }
             })
             .catch(error => {
                 setClicked(false)
-                notifyError()
+                notifyError("Error al intentar crear la orden de compra. Vuelve a intentarlo luego.")
+                failure = true
             })
+
+            if (failure){
+                return 400
+            } else {
+                return 200
+            }
             
         } catch (error) {
-            console.log(error);
+            notifyError("Error: " + error.message)
         }
     }
 
@@ -161,6 +177,10 @@ const MediosDePago = ({user, dataCart}) => {
                     <p> {">"} </p>
                 </div>
 
+                <div className='divButtonFinish'>
+                    <p>Recordá siempre enviar el comprobante de pago al Whatsapp: +54 2625123456</p>
+                </div>
+
                 {
                     medioSeleccionado && 
                     <div className='divButtonFinish'>
@@ -175,6 +195,13 @@ const MediosDePago = ({user, dataCart}) => {
                             initialization={{preferenceId: preferenceId}}
                             customization={{texts: {valueProp: "smart_option"}}}
                         />
+                    </div>
+                }
+
+                {
+                    clickedOnMP &&
+                    <div className='divButtonFinish'>
+                        <p>Cargando...</p>
                     </div>
                 }
 
