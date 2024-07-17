@@ -1,0 +1,15 @@
+.divFinishBuyContainer{
+    margin: 0 5rem 5rem 5rem;
+    height: 100vh;
+}
+
+.backRow{
+    width: min-content;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 640px) {
+    .divFinishBuyContainer{
+        margin: 0 2rem;
+    }
+}

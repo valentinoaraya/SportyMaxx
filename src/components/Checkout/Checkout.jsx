@@ -7,7 +7,7 @@ import MediosDePago from './MediosDePago/MediosDePago.jsx';
 
 const Checkout = () => {
 
-    // Debo verificar si hay un usuario, caso contrario pedir informaciónd
+    // Debo verificar si hay un usuario, caso contrario pedir información
     const [user, setUser] = useState(null)
     const [dataUser, setDataUser] = useState({})
     const { cart, totalPrice } = useContext(cartContext);

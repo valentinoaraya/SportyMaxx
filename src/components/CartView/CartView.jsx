@@ -38,7 +38,7 @@ const CartView = () => {
                     <ul className="navbar-nav justify-content-end flex-grow-1">
                         {
                             cart.map((prod)=>{
-                                return <li key={prod.id}>
+                                return <li key={prod.id+prod.talleSeleccionado}>
                                     <ProductInCart product={prod}></ProductInCart>
                                 </li>
                             })

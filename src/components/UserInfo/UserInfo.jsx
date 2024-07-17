@@ -47,6 +47,7 @@ const UserInfo = () => {
                             <div className='divButtonsAdmin'>
                                 <Link to={"/add-product/"} className='linkButtonAdmin'> <Button color={"btn-dark allwidth"}>Agregar Producto</Button> </Link>
                                 <Link to={"/edit-product/"} className='linkButtonAdmin'> <Button color={"btn-dark allwidth"}>Editar producto</Button> </Link>
+                                <Link to={"/orders"} > <Button color={"btn-dark allwidth"} >Órdenes de compra</Button></Link>
                             </div>
                         </div>
                     }
