@@ -16,14 +16,14 @@ const FinishBuy = () => {
                         <h3>⏳ En espera de pago...</h3>
                         <p>¡Hola! Podés realizar la transferencia a la siguiente cuenta:</p>
                         <ul>
-                            <li>CBU: número de cbu</li>
-                            <li>ALIAS: alias.alias</li>
-                            <li>TITULAR DE LA CUENTA: nombre del titular </li>
-                            <li>DNI: 45454545</li>
+                            <li>CBU: 0110266830026615937897</li>
+                            <li>ALIAS: matii.villegas</li>
+                            <li>TITULAR DE LA CUENTA: Vito Matías Villegas Nidoriz </li>
+                            <li>DNI: 45968255</li>
                         </ul>
                         <p className='finalP'>IMPORTANTE: </p>
                         <p>Para confirmar el pago y concretar el envío, debes ENVIAR el COMPROBANTE de transferencia al siguiente número:</p>
-                        <p>🟢 Whatsapp: 123456</p>
+                        <p>🟢 Whatsapp: +54 2625648229</p>
                         <p>Nos pondremos de acuerdo para realizar el envío por ese mismo medio.</p>
                         <p className='finalP'>¡Muchas gracias por confiar!</p>
                     </div>

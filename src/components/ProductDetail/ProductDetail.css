@@ -43,11 +43,6 @@
     font-weight: 700;
 }
 
-.divSeleccionarTalle h4{
-    font-size: 1rem;
-    text-decoration: underline;
-}
-
 .botonesSeleccionarTalle{
     display: flex;
 }

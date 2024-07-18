@@ -5,9 +5,9 @@ import SectionFooter from './SectionFooter/SectionFooter.jsx';
 const Footer = () => {
 
     const arrayCategories = ["Remeras", "Buzos", "Camisas", "Pantalones", "Bermudas", "Mallas", "Accesorios"]
-    const arrayMediosPago = ["Mercado Pago", "Tarjetas"]
+    const arrayMediosPago = ["Mercado Pago", "Tarjetas", "Transferencia bancaria"]
     const arrayMediosEnvio = ["Correo Argentino"]
-    const arrayContact = ["+54 2625123456"]
+    const arrayContact = ["+54 2625648229"]
     const arraySocials = ["Instagram"]
     const arrayAddress =["Avenida Alvear Este 74", "General Alvear, Mendoza, Argentina"]
 
