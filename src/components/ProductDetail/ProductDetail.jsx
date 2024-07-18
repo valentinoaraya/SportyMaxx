@@ -100,7 +100,6 @@ const ProductDetail = ({ product }) => {
                                 })
                             }
                         </div>
-                        <h4>Guía de talles</h4>
                     </div>
                 }
                 <div className='divAgregarCarrito'>

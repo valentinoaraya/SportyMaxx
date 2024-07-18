@@ -178,7 +178,7 @@ const MediosDePago = ({user, dataCart}) => {
                 </div>
 
                 <div className='divButtonFinish'>
-                    <p>Recordá siempre enviar el comprobante de pago al Whatsapp: +54 2625123456</p>
+                    <p>Recordá siempre enviar el comprobante de pago al Whatsapp: +54 2625648229</p>
                 </div>
 
                 {
