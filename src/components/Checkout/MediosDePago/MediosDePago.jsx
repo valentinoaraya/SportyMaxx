@@ -26,7 +26,7 @@ const MediosDePago = ({user, dataCart}) => {
             const productsToSend = dataCart.map((prod)=>{
                 return {
                     title: prod.nombre,
-                    unit_price: prod.precio,
+                    unit_price: prod.precio*1.1,
                     quantity: prod.count,
                 }
             })
@@ -164,6 +164,7 @@ const MediosDePago = ({user, dataCart}) => {
                     <div>
                         <img src={mercadoPagoLogo} alt="Logo MercadoPago" className='iconMDP iconMercadoPago'/>
                         <p>MercadoPago (Transferencia - Tarjetas)</p>
+                        <h4>+ 10% extra</h4>
                     </div>
                     <p> {">"} </p>
                 </div>
