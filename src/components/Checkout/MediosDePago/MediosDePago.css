@@ -82,6 +82,12 @@
     margin-top: 1rem;
 }
 
+.medioDePago h4{
+    margin: 0 0 0 2rem;
+    font-size: 1rem;
+    color:dimgrey;
+}
+
 @media screen and (max-width: 750px) {
     .divMediosDePagoContainer{
         width: 100%;
@@ -89,6 +95,11 @@
 
     .medioDePago p{
         font-size: 1rem;
+    }
+
+    .medioDePago h4{
+        font-size: 0.8rem;
+        margin: 0 0 0 0.5rem;
     }
 
     .medioDePago div p{
