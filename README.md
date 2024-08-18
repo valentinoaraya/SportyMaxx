@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# SportyMaxx - FrontEnd 👕🛍️
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este repositorio contiene el código del frontend para SportyMaxx, una aplicación de e-commerce diseñada para una tienda de ropa. La aplicación está desarrollada con React JS y es completamente responsive, permitiendo a los usuarios una experiencia óptima en cualquier dispositivo. Solo el dueño de la tienda está autorizado para realizar operaciones CRUD sobre los productos.
+### ✨ Características
 
-## Available Scripts
+- **Responsive Design 📱💻:** La aplicación se adapta a cualquier tamaño de pantalla, proporcionando una experiencia de usuario fluida tanto en dispositivos móviles como en desktop.
+- **Administración de Productos 🛠️:** El dueño de la tienda puede añadir, editar y eliminar productos desde una interfaz intuitiva.
+- **Notificaciones 🔔:** Se utilizan notificaciones visuales para informar al administrador sobre las acciones realizadas.
 
-In the project directory, you can run:
+### 🛠️ Tecnologías Utilizadas
 
-### `npm start`
+- **React JS ⚛️:** Framework principal para la construcción de la aplicación.
+- **Bootstrap 🎨:** Utilizado para estilizar algunos componentes y facilitar el diseño responsive.
+- **react-router-dom 🌐:** Para gestionar las rutas y vistas de la aplicación.
+- **Toastify 🍞:** Para mostrar notificaciones de manera elegante y sencilla.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🚀 Instalación
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clona este repositorio (solo usuarios autorizados):
 
-### `npm test`
+```bash
+git clone https://github.com/usuario/sportymaxx-frontend.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Navega al directorio del proyecto:
 
-### `npm run build`
+```bash
+cd sportymaxx-frontend
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Instala las dependencias necesarias:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Inicia la aplicación:
 
-### `npm run eject`
+```bash
+npm start
+```
+5. La aplicación estará disponible en http://localhost:3000.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 🛒 Uso
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Administración 🔧:** El dueño de la tienda puede realizar operaciones CRUD sobre los productos desde la interfaz de administración.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Navegación 🧭:** Los usuarios pueden explorar las diferentes secciones de la tienda, añadir productos al carrito y proceder a realizar compras.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 👀 Visita la aplicación
 
-## Learn More
+- [SportyMaxx](https://sporty-maxx.vercel.app/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🤝 Contribuciones
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Dado que este repositorio es privado, las contribuciones están restringidas. Si tienes acceso y deseas contribuir, por favor, realiza un fork y envía un pull request con tus mejoras.
 
-### Code Splitting
+### 🧑‍💻 Autores
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Valentino Araya
+   - [LinkedIn](https://www.linkedin.com/in/valentino-araya-18915825b/)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 📜 Licencia
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este proyecto está licenciado bajo la MIT License.
