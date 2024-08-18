@@ -19,13 +19,13 @@ Este repositorio contiene el c√≥digo del frontend para SportyMaxx, una aplicaci√
 1. Clona este repositorio (solo usuarios autorizados):
 
 ```bash
-git clone https://github.com/usuario/sportymaxx-frontend.git
+git clone https://github.com/usuario/SportyMaxx.git
 ```
 
 2. Navega al directorio del proyecto:
 
 ```bash
-cd sportymaxx-frontend
+cd SportyMaxx
 ```
 
 3. Instala las dependencias necesarias:
