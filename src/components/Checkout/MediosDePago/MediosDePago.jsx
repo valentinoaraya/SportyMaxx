@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import "./MediosDePago.css"
 import mercadoPagoLogo from "../../../assets/images/mercado-pago-logo-vector-2023.png";
 import axios from 'axios';
-import {toast, ToastContainer} from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Button from "../../Button/Button.jsx"
 import { useNavigate } from 'react-router-dom';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 
-const MediosDePago = ({user, dataCart}) => {
+const MediosDePago = ({ user, dataCart }) => {
 
     const [clicked, setClicked] = useState(false)
     const [medioSeleccionado, setMedioSeleccionado] = useState(null)
@@ -15,18 +15,20 @@ const MediosDePago = ({user, dataCart}) => {
     const [clickedOnMP, setClickedOnMP] = useState(false)
 
     const navigate = useNavigate()
-    
+
     initMercadoPago(process.env.REACT_APP_MP_PUBLIC_KEY, {
         locale: "es-AR"
     })
 
-    const createPreference = async () => {
-        try{
+    console.log(preferenceId)
 
-            const productsToSend = dataCart.map((prod)=>{
+    const createPreference = async () => {
+        try {
+
+            const productsToSend = dataCart.map((prod) => {
                 return {
                     title: prod.nombre,
-                    unit_price: prod.precio*1.1,
+                    unit_price: prod.precio * 1.1,
                     quantity: prod.count,
                 }
             })
@@ -47,16 +49,16 @@ const MediosDePago = ({user, dataCart}) => {
         setMedioSeleccionado(null)
         setClickedOnMP(true)
         await handleFinishBuy()
-        .then(async (response) =>{
-            if (response === 200){
-                setClickedOnMP(false)
-                const id = await createPreference()
-                if (id) setPreferenceId(id)
-            } else {
-                setClickedOnMP(false)
-            }
-        })
-    }    
+            .then(async (response) => {
+                if (response === 200) {
+                    setClickedOnMP(false)
+                    const id = await createPreference()
+                    if (id) setPreferenceId(id)
+                } else {
+                    setClickedOnMP(false)
+                }
+            }).catch(error => console.log(error))
+    }
 
     const notifyError = (text) => toast.error(text, {
         theme: "colored",
@@ -93,7 +95,7 @@ const MediosDePago = ({user, dataCart}) => {
                     precio: prod.precio
                 }
             })
-    
+
             const dataBuyer = {
                 nombre: user.nombre,
                 email: user.email,
@@ -108,30 +110,30 @@ const MediosDePago = ({user, dataCart}) => {
                 buyer: dataBuyer,
                 date: fecha,
                 products: simplifyProducts,
-                total: dataCart.reduce((acc, prod) => acc + prod.precio*prod.count, 0)
+                total: dataCart.reduce((acc, prod) => acc + prod.precio * prod.count, 0)
             }
-            
-            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/orders/add-order`, order)
-            .then(response => {
-                if (response.status === 200){
-                    setClicked(false)
-                    if (medioSeleccionado) {
-                        navigate(`/finish-buy/${medioSeleccionado}`)
-                    }
-                }
-            })
-            .catch(error => {
-                setClicked(false)
-                notifyError("Error al intentar crear la orden de compra. Vuelve a intentarlo luego.")
-                failure = true
-            })
 
-            if (failure){
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/orders/add-order`, order)
+                .then(response => {
+                    if (response.status === 200) {
+                        setClicked(false)
+                        if (medioSeleccionado) {
+                            navigate(`/finish-buy/${medioSeleccionado}`)
+                        }
+                    }
+                })
+                .catch(error => {
+                    setClicked(false)
+                    notifyError("Error al intentar crear la orden de compra. Vuelve a intentarlo luego.")
+                    failure = true
+                })
+
+            if (failure) {
                 return 400
             } else {
                 return 200
             }
-            
+
         } catch (error) {
             notifyError("Error: " + error.message)
         }
@@ -148,28 +150,28 @@ const MediosDePago = ({user, dataCart}) => {
             </div>
             <div className='divMediosDePago'>
                 <h2>Medios de pago:</h2>
-                                    
+
                 <div id='transferencia' className={medioSeleccionado === "transferencia" ? 'medioDePago medioSeleccionado' : 'medioDePago'} onClick={handleSelectMethod}>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" fill="currentColor" className="bi iconMDP bi-bank" viewBox="0 0 16 16">
-                            <path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z"/>
+                            <path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z" />
                         </svg>
                         <p>Transferencia bancaria</p>
                     </div>
                     <p> {">"} </p>
                 </div>
-                    
-                
+
+
                 <div id='mercadoPago' className={clickedOnMP ? 'medioDePago MDPmercadoPago medioSeleccionado' : 'medioDePago MDPmercadoPago'} onClick={handleBuyMP}>
                     <div>
-                        <img src={mercadoPagoLogo} alt="Logo MercadoPago" className='iconMDP iconMercadoPago'/>
+                        <img src={mercadoPagoLogo} alt="Logo MercadoPago" className='iconMDP iconMercadoPago' />
                         <p>MercadoPago (Transferencia - Tarjetas)</p>
                         <h4>+ 10% extra</h4>
                     </div>
                     <p> {">"} </p>
                 </div>
 
-                    
+
                 <div id='efectivo' className={medioSeleccionado === "efectivo" ? 'medioDePago medioSeleccionado' : 'medioDePago'} onClick={handleSelectMethod}>
                     <div>
                         <span className='iconMDP iconEfectivo'>$</span>
@@ -183,7 +185,7 @@ const MediosDePago = ({user, dataCart}) => {
                 </div>
 
                 {
-                    medioSeleccionado && 
+                    medioSeleccionado &&
                     <div className='divButtonFinish'>
                         <Button onFinish={handleFinishBuy} enabledDisabled={clicked && true} color={"btn-dark"} >{clicked ? "Cargando..." : "Realizar pedido"}</Button>
                     </div>
@@ -193,8 +195,8 @@ const MediosDePago = ({user, dataCart}) => {
                     preferenceId &&
                     <div>
                         <Wallet
-                            initialization={{preferenceId: preferenceId}}
-                            customization={{texts: {valueProp: "smart_option"}}}
+                            initialization={{ preferenceId: preferenceId }}
+                            customization={{ texts: { valueProp: "smart_option" } }}
                         />
                     </div>
                 }
